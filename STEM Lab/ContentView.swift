@@ -8,20 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    let buttonList: [SubjectButton] = [
+        SubjectButton(iconName: "logo", subjectName: "Fizyka", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow),
+        SubjectButton(iconName: "logo", subjectName: "Chemia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow),
+        SubjectButton(iconName: "logo", subjectName: "Matematyka", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow),
+        SubjectButton(iconName: "logo", subjectName: "Biologia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow)
+    ]
     var body: some View {
         VStack(){
             TitleSectionView()
                 .padding()
             Divider()
                 .padding(.horizontal)
-            ScrollView{
-                VStack(spacing:15){
-                    ForEach(0..<4){_ in
-                        SubjectButtonView(data: SubjectButton(iconName: "logo", subjectName: "Chemia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow))
+            NavigationStack{
+                ScrollView{
+                    VStack(spacing:15){
+                        ForEach(buttonList) { button in
+                            NavigationLink{
+                                SubjectView()
+                                    .navigationTitle(button.subjectName)
+                            } label:{
+                                SubjectButtonView(data: button)
+                            }
+                            
+                        }
                     }
                 }
             }
-            
         }
     }
 }

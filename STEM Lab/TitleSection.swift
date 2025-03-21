@@ -13,7 +13,7 @@ struct TitleSectionView: View {
             Image("logo")
                 .resizable()
                 .frame(width: 70,height: 70)
-            Text("STEM Lab")
+            Text("STEAM Lab")
                 .font(.title)
                 .bold()
         }
