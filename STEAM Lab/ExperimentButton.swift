@@ -28,6 +28,7 @@ struct ExperimentButtonView: View {
         .background(.experimentButton)
         .cornerRadius(10)
         .shadow(color: .primary.opacity(0.25), radius: 1, x:0, y: 2)
+        .padding(.horizontal)
     }
 }
 struct ExperimentButton: Identifiable{
