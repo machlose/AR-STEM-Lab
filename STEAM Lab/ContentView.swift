@@ -16,33 +16,25 @@ struct ContentView: View {
             TitleSectionView()
             Divider()
                 .padding(.horizontal)
-                // nie działa na iphone
                     VStack(spacing: 15){
-                        List{
-                            ForEach(buttonList){ button in
-                                Button(){
-                                    selectedSubject = button
-                                    visibility = .detailOnly
-                                    print(visibility)
+                        List(buttonList, selection: $selectedSubject){ button in
+                            NavigationLink(value:button,label:{
+                                if UIDevice.current.userInterfaceIdiom == .pad{
+                                    SubjectButtonView(data: button)
                                 }
-                                label:{
-                                    if UIDevice.current.userInterfaceIdiom == .pad{
+                                else{
+                                    HStack{
+                                        Spacer()
                                         SubjectButtonView(data: button)
-                                    }
-                                    else{
-                                        HStack{
-                                            Spacer()
-                                            SubjectButtonView(data: button)
-                                            Spacer()
-                                        }
+                                        Spacer()
                                     }
                                 }
-                                .listRowSeparator(.hidden)
+                            })
+                            .listRowSeparator(.hidden)
                             }
                         }
                         .listStyle(.plain)
-                }
-                .padding()
+                        .padding()
             }detail:{
                 if let selectedSubject {
                     SubjectView()

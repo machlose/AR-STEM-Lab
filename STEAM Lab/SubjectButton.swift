@@ -36,7 +36,7 @@ struct SubjectButtonView: View {
     }
 }
 
-struct SubjectButton: Identifiable{
+struct SubjectButton: Identifiable, Hashable{
     var id = UUID()
     var iconName: String
     var subjectName: String
