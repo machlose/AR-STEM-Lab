@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
+            NavigationSplitView(columnVisibility: .constant(.doubleColumn)){
             TitleSectionView()
             Divider()
                 .padding(.horizontal)
             //dziwne Problemy na iphone
-            NavigationSplitView(columnVisibility: .constant(.doubleColumn)){
                 ScrollView{
                     VStack(spacing: 15){
                         ForEach(buttonList){ button in
@@ -26,7 +26,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .navigationTitle("Dziedziny")
                 }
                 .padding()
             }detail:{

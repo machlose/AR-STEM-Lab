@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SubjectView: View {
-    let buttonList: [SubjectButton] = [
-        SubjectButton(iconName: "logo", subjectName: "Experyment 1", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow),
-        SubjectButton(iconName: "logo", subjectName: "Experyment 2", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow),
-        SubjectButton(iconName: "logo", subjectName: "Experyment 3", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow),
-        SubjectButton(iconName: "logo", subjectName: "Experyment 4", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow)
+    let buttonList: [ExperimentButton] = [
+        ExperimentButton(name:"Eksperyment 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
+        ExperimentButton(name:"Eksperyment 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
+        ExperimentButton(name:"Eksperyment 3",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
+        ExperimentButton(name:"Eksperyment 4",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
     ]
     var body: some View {
         NavigationStack{
@@ -22,7 +22,7 @@ struct SubjectView: View {
                         NavigationLink{
                             SubjectView()
                         } label:{
-                            SubjectButtonView(data: button)
+                            ExperimentButtonView(data: button)
                         }
                     }
                 }

@@ -26,6 +26,7 @@ struct SubjectButtonView: View {
                 Text(data.subText)
                     .font(.footnote)
                     .foregroundStyle(Color.font.secondary)
+                    .multilineTextAlignment(.leading)
             }
         }
         .padding()
