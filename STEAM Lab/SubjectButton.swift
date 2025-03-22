@@ -16,6 +16,7 @@ struct SubjectButtonView: View {
                     .resizable()
                     .frame(width: 75, height: 75)
                     .scaledToFit()
+                    .shadow(color: .black.opacity(0.25), radius: 1, x:0, y: 2)
             }
             VStack(alignment: .leading){
                 Text(data.subjectName)
