@@ -13,7 +13,7 @@ struct ContentView: View {
             TitleSectionView()
             Divider()
                 .padding(.horizontal)
-            NavigationStack{
+            NavigationSplitView(columnVisibility: .constant(.doubleColumn)){
                 ScrollView{
                     VStack(spacing: 15){
                         ForEach(buttonList){ button in
@@ -25,8 +25,13 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .navigationTitle("Dziedziny")
                 }
                 .padding()
+            }detail:{
+                Text("Wybierz dziedzinę")
+                    .font(.largeTitle)
+                    .bold()
             }
             Spacer()
         }
