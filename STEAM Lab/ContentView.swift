@@ -13,6 +13,7 @@ struct ContentView: View {
             TitleSectionView()
             Divider()
                 .padding(.horizontal)
+            //dziwne Problemy na iphone
             NavigationSplitView(columnVisibility: .constant(.doubleColumn)){
                 ScrollView{
                     VStack(spacing: 15){

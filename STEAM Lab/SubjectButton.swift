@@ -14,12 +14,12 @@ struct SubjectButtonView: View {
             VStack{
                 Image(data.iconName)
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 75, height: 75)
                     .scaledToFit()
             }
             VStack(alignment: .leading){
                 Text(data.subjectName)
-                    .font(.largeTitle)
+                    .font(.title2)
                     .fontWeight(.black)
                     .foregroundStyle(Color.font)
                 Text(data.subText)
@@ -49,5 +49,5 @@ struct SubjectButton: Identifiable{
 }
 
 #Preview {
-    SubjectButtonView(data: SubjectButton(iconName: "logo", subjectName: "Chemia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow))
+    SubjectButtonView(data: SubjectButton(iconName: "ChemFlask", subjectName: "Chemia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow))
 }
