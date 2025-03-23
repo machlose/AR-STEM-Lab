@@ -15,7 +15,7 @@ struct StartButtonView: View {
                 Text(content)
                     .font(.title2)
                     .fontWeight(.black)
-                    .foregroundStyle(.baseFont)
+                    .foregroundStyle(.font)
             }
         }
         .padding()
