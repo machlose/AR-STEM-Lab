@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
-    //do zmiany w wolnej chwili
-    @ObservedObject private var userProfile = (try? JSONDecoder().decode(UserProfile.self, from: (UserDefaults.standard.object(forKey: "profile") as? Data ?? Data()))) ?? UserProfile()
+    @ObservedObject private var userProfile: UserProfile = UserDefaults.getObject(forKey: "profile") ?? UserProfile()
     var body: some View {
         Form{
             VStack{
@@ -24,7 +22,7 @@ struct ProfileView: View {
             }
         }
         .onChange(of: [userProfile.preferedTheme], {
-            try? UserDefaults.standard.set(JSONEncoder().encode(userProfile),forKey: "profile")
+            UserDefaults.setObject(data: userProfile)
         })
     }
 }
