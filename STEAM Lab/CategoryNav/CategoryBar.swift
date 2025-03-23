@@ -15,13 +15,15 @@ struct CategoryBarView: View {
     ]
     var body: some View {
         HStack{
-            ForEach(categoryButtons){button in
+            ForEach(categoryButtons){ button in
                 CategoryButtonView(currentView: $currentView, data: button)
             }
+            
         }
     }
 }
 
 #Preview {
+//    CategoryBarView()
 }
 

@@ -11,10 +11,10 @@ struct ContentView: View {
     @State public var currentView: Categories = .experiments
     var body: some View {
         switch currentView {
-            case .profile:
-                ProfileView()
-            case .experiments:
-                ExperimentNavigationView()
+        case .profile:
+            ProfileView()
+        case .experiments:
+            ExperimentNavigationView()
         }
         CategoryBarView(currentView: $currentView)
     }
