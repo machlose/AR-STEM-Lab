@@ -23,7 +23,7 @@ struct ExperimentNavigationView: View {
                 ScrollView{
                     VStack(spacing: 15){
                         ForEach(buttonList){ button in
-                            NavigationLink(destination:SubjectView(subjectName: button.subjectName),label:{
+                            NavigationLink(destination:SubjectView(subjectName: button.subjectName).navigationTitle(button.subjectName),label:{
                                 SubjectButtonView(data: button)
                             })
                             .listRowSeparator(.hidden)

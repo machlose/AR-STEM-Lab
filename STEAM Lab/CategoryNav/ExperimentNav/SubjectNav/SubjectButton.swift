@@ -28,8 +28,8 @@ struct SubjectButtonView: View {
                     .foregroundStyle(Color.font.secondary)
                     .multilineTextAlignment(.leading)
                     .multilineTextAlignment(.leading)
-                    .frame(maxWidth: 400, alignment: .leading)
             }
+            .frame(maxWidth: 400, alignment: .leading)
         }
         .padding()
         .background(Color(data.bgColor))

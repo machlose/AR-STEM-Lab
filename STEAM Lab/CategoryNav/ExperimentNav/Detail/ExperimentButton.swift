@@ -21,8 +21,8 @@ struct ExperimentButtonView: View {
                     .font(.footnote)
                     .foregroundStyle(.baseFont)
                     .multilineTextAlignment(.leading)
-                    .frame(maxWidth: 400, alignment: .leading)
             }
+            .frame(maxWidth: 550, alignment: .leading)
         }
         .padding()
         .background(.experimentButton)

@@ -40,6 +40,7 @@ struct SubjectView: View {
                 }
             }
         }
+        .navigationTitle(subjectName)
     }
 }
 

@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         switch currentView {
             case .profile:
-                SubjectView(subjectName: "Fizyka")
+                ProfileView()
             case .experiments:
                 ExperimentNavigationView()
         }

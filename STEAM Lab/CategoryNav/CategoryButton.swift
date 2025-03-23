@@ -21,13 +21,14 @@ struct CategoryButtonView: View {
             VStack{
                 Image(data.iconName)
                     .resizable()
-                    .frame(width: 30, height: 30)
+                    .frame(width: 20, height: 20)
                 Text(data.description)
+                    .font(.subheadline)
                     .foregroundStyle(.baseFont)
                     .bold()
             }
+            .frame(maxWidth: 125)
             .padding()
-            .padding(.horizontal)
             .background((currentView == data.category) ? .experimentButton : .clear)
             .cornerRadius(15)
         }
