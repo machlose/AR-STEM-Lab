@@ -8,19 +8,31 @@
 import SwiftUI
 
 struct SubjectView: View {
-    let buttonList: [ExperimentButton] = [
-        ExperimentButton(name:"Eksperyment 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
-        ExperimentButton(name:"Eksperyment 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
-        ExperimentButton(name:"Eksperyment 3",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
-        ExperimentButton(name:"Eksperyment 4",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"),
-    ]
+    let subjectName: String
+    let buttonList: [String: [ExperimentButton]] = [
+        "Fizyka": [
+            ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Eksperyment Fizyka 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView2())),
+            ExperimentButton(name:"Eksperyment Fizyka 3",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView3())),
+            ExperimentButton(name:"Eksperyment 4",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
+            ],
+        "Chemia": [
+            ExperimentButton(name:"Eksperyment Chemia 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
+            ],
+        "Matematyka": [
+            ExperimentButton(name:"Eksperyment Matematyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
+            ],
+        "Biologia": [
+            ExperimentButton(name:"Eksperyment Biologia 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
+            ]
+        ]
     var body: some View {
         NavigationStack{
             ScrollView{
                 VStack(spacing:15){
-                    ForEach(buttonList) { button in
+                    ForEach(buttonList[subjectName]!) { button in
                         NavigationLink{
-                            SubjectView()
+                            ExperimentDetailView(SelectedExperiment: button)
                         } label:{
                             ExperimentButtonView(data: button)
                         }
@@ -32,6 +44,6 @@ struct SubjectView: View {
 }
 
 #Preview {
-    SubjectView()
+    SubjectView(subjectName: "Chemia")
 }
 
