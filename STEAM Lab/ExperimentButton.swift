@@ -35,12 +35,14 @@ struct ExperimentButton: Identifiable{
     var id = UUID()
     var name: String
     var description: String
-    init(name: String, description: String) {
+    var destination: AnyView
+    init(name: String, description: String, destination: AnyView) {
         self.name = name
         self.description = description
+        self.destination = destination
     }
 }
 
 #Preview {
-    ExperimentButtonView(data: ExperimentButton(name:"Eksperyment", description: "Lorem ipsum dolor sit amet consectetur adipiscing elit"))
+    ExperimentButtonView(data: ExperimentButton(name:"Eksperyment", description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", destination: AnyView(TestExperimentView())))
 }
