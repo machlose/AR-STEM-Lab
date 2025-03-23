@@ -18,6 +18,7 @@ struct ExperimentNavigationView: View {
                     .padding(.horizontal)
                 Text("Wybierz dziedzinę:")
                     .font(.largeTitle)
+                    .foregroundStyle(.baseFont)
                     .bold()
                 ScrollView{
                     VStack(spacing: 15){

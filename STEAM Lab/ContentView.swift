@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State public var currentView: Categories = .experiments
     var body: some View {
-        ExperimentNavigationView()
+        switch currentView {
+            case .profile:
+                SubjectView(subjectName: "Fizyka")
+            case .experiments:
+                ExperimentNavigationView()
+        }
+        CategoryBarView(currentView: $currentView)
     }
 }
 

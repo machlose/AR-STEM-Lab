@@ -35,6 +35,7 @@ struct SubjectButtonView: View {
         .background(Color(data.bgColor))
         .cornerRadius(10)
         .shadow(color: .primary.opacity(0.25), radius: 1, x:0, y: 2)
+        .padding(.horizontal)
     }
 }
 

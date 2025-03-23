@@ -15,8 +15,9 @@ struct TitleSectionView: View {
                 .frame(width: 70, height: 70)
                 .cornerRadius(15)
             Text("STEAM Lab")
-                .font(.title)
-                .bold()
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .foregroundStyle(.baseFont)
         }
     }
 }

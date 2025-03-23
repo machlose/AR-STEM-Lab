@@ -1,0 +1,27 @@
+//
+//  CategoryBar.swift
+//  STEAM Lab
+//
+//  Created by uczen on 23/03/2025.
+//
+
+import SwiftUI
+
+struct CategoryBarView: View {
+    @Binding var currentView: Categories
+    let categoryButtons: [CategoryButton] = [
+        CategoryButton(iconName: "BiologyPlanet",category: .profile,description: "Profil"),
+        CategoryButton(iconName: "BiologyPlanet",category: .experiments,description: "Profil")
+    ]
+    var body: some View {
+        HStack{
+            ForEach(categoryButtons){button in
+                CategoryButtonView(currentView: $currentView, data: button)
+            }
+        }
+    }
+}
+
+#Preview {
+}
+
