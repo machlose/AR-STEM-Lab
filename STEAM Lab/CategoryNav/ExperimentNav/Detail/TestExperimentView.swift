@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct TestExperimentView: View {
-    @EnvironmentObject var appState: AppState
-    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        .onAppear{
-            withAnimation(Animation.easeIn(duration: 0.1)){
-                appState.isFullScreen = true
-            }
-        }
-        .onDisappear{
-            withAnimation(Animation.easeIn(duration: 0.1)){
-                appState.isFullScreen = false
-            }
-        }
     }
 }
 
+struct TestExperimentView2: View {
+    var body: some View {
+        Text("Hello, World!2")
+    }
+}
+
+struct TestExperimentView3: View {
+    var body: some View {
+        Text("13412")
+    }
+}
+
+
 #Preview {
-    TestExperimentView().environmentObject(AppState())
+    TestExperimentView()
 }

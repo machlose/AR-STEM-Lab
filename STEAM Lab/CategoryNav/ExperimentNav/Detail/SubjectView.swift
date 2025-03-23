@@ -13,8 +13,8 @@ struct SubjectView: View {
     let buttonList: [String: [ExperimentButton]] = [
         "Fizyka": [
             ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
-            ExperimentButton(name:"Eksperyment Fizyka 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
-            ExperimentButton(name:"Eksperyment Fizyka 3",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Eksperyment Fizyka 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView2())),
+            ExperimentButton(name:"Eksperyment Fizyka 3",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView3())),
             ExperimentButton(name:"Eksperyment 4",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
             ],
         "Chemia": [
@@ -42,11 +42,13 @@ struct SubjectView: View {
             }
         }
         .navigationTitle(subjectName)
+        .onAppear{
+            appState.isFullScreen = false
+        }
     }
 }
 
 #Preview {
     SubjectView(subjectName: "Chemia")
-        .environmentObject(AppState())
 }
 

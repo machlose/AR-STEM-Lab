@@ -30,6 +30,12 @@ struct ExperimentDetailView: View {
                 }
             }
         }
+        .onAppear{
+            appState.isFullScreen = true
+        }
+        .onDisappear{
+            appState.isFullScreen = false
+        }
     }
 }
 

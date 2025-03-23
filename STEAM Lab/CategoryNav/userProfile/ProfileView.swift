@@ -15,15 +15,16 @@ struct ProfileView: View {
                 Text("Profil Użytkownika:")
                     .font(.title2)
                     .bold()
-                Picker("preferowany Motyw", selection: $appState.userProfile.preferedTheme){
-                    Text("Ciemny").tag(Themes.dark)
-                    Text("Jasny").tag(Themes.light)
+                Picker("preferowany Motyw", selection: $appState.colorScheme){
+                    Text("Domyślny").tag(ColorScheme?.none)
+                    Text("Ciemny").tag(ColorScheme.dark)
+                    Text("Jasny").tag(ColorScheme.light)
                 }
             }
         }
-        .onChange(of: appState.userProfile.preferedTheme, {
-            UserDefaults.setObject(data: appState.userProfile)
-            appState.Theme = (appState.userProfile.preferedTheme == .dark) ? ColorScheme.dark : ColorScheme.light
+        .preferredColorScheme(appState.colorScheme)
+        .onChange(of: appState.colorScheme, {
+            appState.setTheme(colorScheme: appState.colorScheme)
         })
     }
 }
