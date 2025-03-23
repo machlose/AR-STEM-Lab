@@ -19,22 +19,16 @@ struct ContentView: View {
                     VStack(spacing: 15){
                         List(buttonList, selection: $selectedSubject){ button in
                             NavigationLink(value:button,label:{
-                                if UIDevice.current.userInterfaceIdiom == .pad{
+                                HStack{
+                                    Spacer()
                                     SubjectButtonView(data: button)
-                                }
-                                else{
-                                    HStack{
-                                        Spacer()
-                                        SubjectButtonView(data: button)
-                                        Spacer()
-                                    }
+                                    Spacer()
                                 }
                             })
                             .listRowSeparator(.hidden)
                             }
                         }
                         .listStyle(.plain)
-                        .padding()
             }detail:{
                 if let selectedSubject {
                     SubjectView()
@@ -48,7 +42,6 @@ struct ContentView: View {
             
             Spacer()
         }
-        .padding()
     }
 }
 

@@ -1,0 +1,26 @@
+[
+  {
+    "subjectName" : "Fizyka",
+    "bgColor" : "PhysicsOrange",
+    "iconName" : "PhysicsPlanet",
+    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit"
+  },
+  {
+    "iconName" : "ChemFlask",
+    "subjectName" : "Chemia",
+    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+    "bgColor" : "ChemistryYellow",
+  },
+  {
+    "iconName" : "MathCube",
+    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+    "bgColor" : "MathBlue",
+    "subjectName" : "Matematyka"
+  },
+  {
+    "subjectName" : "Biologia",
+    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+    "iconName" : "BiologyPlanet",
+    "bgColor" : "BiologyGreen"
+  }
+]

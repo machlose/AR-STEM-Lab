@@ -30,26 +30,33 @@ struct SubjectButtonView: View {
             }
         }
         .padding()
-        .background(data.bgColor)
+        .background(Color(data.bgColor))
         .cornerRadius(10)
         .shadow(color: .primary.opacity(0.25), radius: 1, x:0, y: 2)
     }
 }
 
-struct SubjectButton: Identifiable, Hashable{
+struct SubjectButton: Identifiable, Hashable, Codable{
+    
     var id = UUID()
     var iconName: String
     var subjectName: String
     var subText: String
-    var bgColor: Color
-    public init(iconName: String, subjectName: String, subText: String, bgColor: Color) {
+    var bgColor: String
+    public init(iconName: String, subjectName: String, subText: String, bgColor: String) {
         self.iconName = iconName
         self.subjectName = subjectName
         self.subText = subText
         self.bgColor = bgColor
     }
+    enum CodingKeys: String, CodingKey{
+        case iconName;
+        case subjectName;
+        case subText;
+        case bgColor;
+    }
 }
 
 #Preview {
-    SubjectButtonView(data: SubjectButton(iconName: "ChemFlask", subjectName: "Chemia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: .chemistryYellow))
+    SubjectButtonView(data: SubjectButton(iconName: "ChemFlask", subjectName: "Chemia", subText: "Lorem ipsum dolor sit amet consectetur adipiscing elit", bgColor: "ChemistryYellow"))
 }
