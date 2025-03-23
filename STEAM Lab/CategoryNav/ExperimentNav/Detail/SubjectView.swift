@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SubjectView: View {
+    @EnvironmentObject var appState: AppState
     let subjectName: String
     let buttonList: [String: [ExperimentButton]] = [
         "Fizyka": [
@@ -41,6 +42,9 @@ struct SubjectView: View {
             }
         }
         .navigationTitle(subjectName)
+        .onAppear{
+            appState.isFullScreen = false
+        }
     }
 }
 

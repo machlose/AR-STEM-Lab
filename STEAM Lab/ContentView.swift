@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var appState: AppState
     @State public var currentView: Categories = .experiments
     var body: some View {
         switch currentView {
@@ -16,10 +17,13 @@ struct ContentView: View {
         case .experiments:
             ExperimentNavigationView()
         }
-        CategoryBarView(currentView: $currentView)
+        if !appState.isFullScreen{
+            CategoryBarView(currentView: $currentView)
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(AppState())
 }

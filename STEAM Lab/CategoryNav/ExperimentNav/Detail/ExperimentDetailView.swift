@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExperimentDetailView: View {
+    @EnvironmentObject var appState: AppState
     let SelectedExperiment: ExperimentButton
     var body: some View {
         NavigationStack{
@@ -29,9 +30,16 @@ struct ExperimentDetailView: View {
                 }
             }
         }
+        .onAppear{
+            appState.isFullScreen = true
+        }
+        .onDisappear{
+            appState.isFullScreen = false
+        }
     }
 }
 
 #Preview {
     ExperimentDetailView(SelectedExperiment: ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())))
+        .environmentObject(AppState())
 }
