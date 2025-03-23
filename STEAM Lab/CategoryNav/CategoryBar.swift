@@ -10,8 +10,8 @@ import SwiftUI
 struct CategoryBarView: View {
     @Binding var currentView: Categories
     let categoryButtons: [CategoryButton] = [
-        CategoryButton(iconName: "logo",category: .experiments,description: "Eksperymenty"),
-        CategoryButton(iconName: "BiologyPlanet",category: .profile,description: "Profil")
+        CategoryButton(iconName: "flaskBase",category: .experiments,description: "Eksperymenty"),
+        CategoryButton(iconName: "profile",category: .profile,description: "Profil")
     ]
     var body: some View {
         HStack{

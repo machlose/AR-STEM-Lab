@@ -21,7 +21,7 @@ struct CategoryButtonView: View {
             VStack{
                 Image(data.iconName)
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 40, height: 40)
                 Text(data.description)
                     .font(.subheadline)
                     .foregroundStyle(.baseFont)
