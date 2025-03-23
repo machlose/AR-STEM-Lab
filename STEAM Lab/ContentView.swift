@@ -14,11 +14,14 @@ struct ContentView: View {
         switch currentView {
         case .profile:
             ProfileView()
+                .preferredColorScheme(appState.Theme)
         case .experiments:
             ExperimentNavigationView()
+                .preferredColorScheme(appState.Theme)
         }
         if !appState.isFullScreen{
             CategoryBarView(currentView: $currentView)
+                .preferredColorScheme(appState.Theme)
         }
     }
 }

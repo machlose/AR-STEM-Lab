@@ -20,6 +20,7 @@ struct CategoryBarView: View {
             }
             
         }
+        .background(.background)
     }
 }
 

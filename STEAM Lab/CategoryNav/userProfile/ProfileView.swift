@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject private var userProfile: UserProfile = UserDefaults.getObject(forKey: "profile") ?? UserProfile()
+    @EnvironmentObject var appState: AppState
     var body: some View {
         Form{
             VStack{
                 Text("Profil Użytkownika:")
                     .font(.title2)
                     .bold()
-                Picker("preferowany Motyw", selection: $userProfile.preferedTheme){
+                Picker("preferowany Motyw", selection: $appState.userProfile.preferedTheme){
                     Text("Ciemny").tag(Themes.dark)
                     Text("Jasny").tag(Themes.light)
                 }
             }
         }
-        .onChange(of: [userProfile.preferedTheme], {
-            UserDefaults.setObject(data: userProfile)
+        .onChange(of: appState.userProfile.preferedTheme, {
+            UserDefaults.setObject(data: appState.userProfile)
+            appState.Theme = (appState.userProfile.preferedTheme == .dark) ? ColorScheme.dark : ColorScheme.light
         })
     }
 }
 
 #Preview {
     ProfileView()
+        .environmentObject(AppState())
 }

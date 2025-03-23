@@ -8,9 +8,9 @@ import SwiftUI
 
 
 class UserProfile: Codable, ObservableObject{
-    @Published var preferedTheme: Themes
+    @Published var preferedTheme: Themes?
     
-    init(preferedTheme: Themes = .light) {
+    init(preferedTheme: Themes? = nil) {
         self.preferedTheme = preferedTheme
     }
     required init(from decoder: Decoder) throws {

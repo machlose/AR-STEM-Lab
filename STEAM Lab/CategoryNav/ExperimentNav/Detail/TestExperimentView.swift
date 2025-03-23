@@ -13,10 +13,14 @@ struct TestExperimentView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         .onAppear{
-            appState.isFullScreen = true
+            withAnimation(Animation.easeIn(duration: 0.1)){
+                appState.isFullScreen = true
+            }
         }
         .onDisappear{
-            appState.isFullScreen = false
+            withAnimation(Animation.easeIn(duration: 0.1)){
+                appState.isFullScreen = false
+            }
         }
     }
 }

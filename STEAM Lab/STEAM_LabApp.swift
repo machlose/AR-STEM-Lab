@@ -13,7 +13,9 @@ struct STEAM_LabApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .colorScheme(.dark)
                 .environmentObject(appState)
+                .colorScheme(.dark)
         }
     }
 }
