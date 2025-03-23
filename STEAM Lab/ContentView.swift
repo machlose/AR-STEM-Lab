@@ -37,7 +37,7 @@ struct ContentView: View {
                         .padding()
             }detail:{
                 if let selectedSubject {
-                    SubjectView()
+                    SubjectView(subjectName: selectedSubject.subjectName)
                 }
                 else{
                     Text("Wybierz dziedzinę")
