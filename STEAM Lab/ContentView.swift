@@ -14,19 +14,18 @@ struct ContentView: View {
         switch currentView {
         case .profile:
             ProfileView()
-                .preferredColorScheme(appState.Theme)
         case .experiments:
             ExperimentNavigationView()
-                .preferredColorScheme(appState.Theme)
         }
         if !appState.isFullScreen{
             CategoryBarView(currentView: $currentView)
-                .preferredColorScheme(appState.Theme)
         }
     }
 }
 
 #Preview {
+    @Previewable @StateObject var appState = AppState()
     ContentView()
-        .environmentObject(AppState())
+        .environmentObject(appState)
+        .preferredColorScheme(appState.Theme)
 }

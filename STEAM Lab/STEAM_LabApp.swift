@@ -14,6 +14,7 @@ struct STEAM_LabApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(appState)
+                .preferredColorScheme(appState.Theme)
         }
     }
 }

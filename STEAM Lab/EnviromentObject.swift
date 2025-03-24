@@ -13,12 +13,10 @@ class AppState: ObservableObject {
     @Published var userProfile: UserProfile
     init(){
         userProfile = UserDefaults.getObject(forKey: "profile") ?? UserProfile()
+        
         @Environment(\.colorScheme) var colorScheme
         Theme = colorScheme
-        if(userProfile.preferedTheme == nil){
-            self.Theme = colorScheme
-        }
-        else{
+        if(userProfile.preferedTheme != nil){
             self.Theme = (userProfile.preferedTheme == .dark) ? ColorScheme.dark : ColorScheme.light
         }
     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct SubjectView: View {
     @EnvironmentObject var appState: AppState
     let subjectName: String
-    let buttonList: [String: [ExperimentButton]] = [
+    let experimentList: [String: [ExperimentButton]] = [
         "Fizyka": [
             ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
             ExperimentButton(name:"Eksperyment Fizyka 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
@@ -31,7 +31,7 @@ struct SubjectView: View {
         NavigationStack{
             ScrollView{
                 VStack(spacing:15){
-                    ForEach(buttonList[subjectName]!) { button in
+                    ForEach(experimentList[subjectName]!) { button in
                         NavigationLink{
                             ExperimentDetailView(SelectedExperiment: button)
                         } label:{

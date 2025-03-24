@@ -24,8 +24,8 @@ struct CategoryButtonView: View {
                     .frame(width: 40, height: 40)
                 Text(data.description)
                     .font(.subheadline)
+                    .fontWeight(.heavy)
                     .foregroundStyle(.baseFont)
-                    .bold()
             }
             .frame(maxWidth: 125)
             .padding()
