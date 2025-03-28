@@ -12,7 +12,8 @@ import Combine
 
 struct ARViewContainer: UIViewRepresentable {
     // Binding do wybranej planety – przekazujemy tę wartość do ContentView
-    @Binding var selectedPlanet: Planet?
+    @Binding var selectedPlanet: PlanetInformation?
+    @Binding var overlayToggle: Bool
 
     class Coordinator: NSObject {
         var cancellable: Cancellable?
@@ -30,10 +31,12 @@ struct ARViewContainer: UIViewRepresentable {
         var freezeTime: Float = 0.0
         
         // Binding do wybranej planety – przekazany z ARViewContainer
-        var selectedPlanetBinding: Binding<Planet?>
-        
-        init(selectedPlanet: Binding<Planet?>) {
+        var selectedPlanetBinding: Binding<PlanetInformation?>
+        var overlayToggle: Binding<Bool>
+
+        init(selectedPlanet: Binding<PlanetInformation?>, overlayToggle: Binding<Bool>) {
             self.selectedPlanetBinding = selectedPlanet
+            self.overlayToggle = overlayToggle
         }
         
         @objc func handleTap(recognizer: UITapGestureRecognizer) {
@@ -92,7 +95,8 @@ struct ARViewContainer: UIViewRepresentable {
                     // Zakładamy, że nazwa obiektu odpowiada nazwie planety.
                     print(tappedEntity)
                     if let tappedPlanet = planets.first(where: { $0.name == tappedEntity.name }) {
-                        selectedPlanetBinding.wrappedValue = tappedPlanet
+                        selectedPlanetBinding.wrappedValue = tappedPlanet.planetInformation
+                        overlayToggle.wrappedValue = true
                     }
                     
                     // Nie przerywamy subskrypcji – pozwalamy na ciągłą aktualizację obracania.
@@ -121,8 +125,7 @@ struct ARViewContainer: UIViewRepresentable {
                     // Resetujemy symulację – ustawiamy accumulatedTime na freezeTime
                     accumulatedTime = TimeInterval(freezeTime)
                     isZoomed = false
-                    // Czyscimy wybraną planetę – overlay zniknie
-                    selectedPlanetBinding.wrappedValue = nil
+                    overlayToggle.wrappedValue = false
                     print("isZoomed: false, accumulatedTime reset to freezeTime: \(freezeTime)")
                 }
             }
@@ -130,7 +133,7 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(selectedPlanet: $selectedPlanet)
+        Coordinator(selectedPlanet: $selectedPlanet, overlayToggle: $overlayToggle)
     }
     
     func makeUIView(context: Context) -> ARView {
