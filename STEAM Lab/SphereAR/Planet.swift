@@ -6,6 +6,7 @@
 //
 
 import RealityKit
+import SwiftUI
 import Foundation
 
 struct Planet {
@@ -16,7 +17,7 @@ struct Planet {
     var orbitCenter: SIMD3<Float> = SIMD3<Float>(0, 0, -1) // Wszystkie orbity umieszczone względem tego samego środka
     var orbitSpeed: Float         // Prędkość orbitalna w radianach na sekundę
     var selfRotationSpeed: Float  // Prędkość obrotu wokół własnej osi w radianach na sekundę
-    var planetInformation: PlanetInformation
+    @State var planetInformation: PlanetInformation
     
     // Encja reprezentująca planetę w scenie AR
     var entity: ModelEntity?

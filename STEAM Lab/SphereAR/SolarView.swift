@@ -10,6 +10,7 @@ import SwiftUI
 struct SolarView: View {
     // Wybrana planeta – gdy nie jest nil, wyświetlamy overlay z informacjami
     @State private var selectedPlanet: Planet? = nil
+    @State private var planetInfo: PlanetInformation? = nil
     @State private var show: Bool = false
 
     var body: some View {
@@ -17,15 +18,15 @@ struct SolarView: View {
             ARViewContainer(selectedPlanet: $selectedPlanet)
                 .edgesIgnoringSafeArea(.all)
             VStack{
-                if selectedPlanet == nil {
-                    PickPlanetView()
-                        .transition(.offset(x:0,y:-100))
-                }
+                PickPlanetView(show: $show)
                 Spacer()
+                PlanetOverlayView(planet: $planetInfo, show: $show)
+            }
+            .onChange(of: selectedPlanet?.name){
                 if let planet = selectedPlanet{
-                    PlanetOverlayView(planet: planet.planetInformation)
-                            .transition(.offset(x:0,y:400))
+                    planetInfo = planet.planetInformation
                 }
+                show.toggle()
             }
         }
     }

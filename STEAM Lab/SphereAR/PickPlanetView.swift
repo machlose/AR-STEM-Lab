@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PickPlanetView: View {
-    @State private var show: Bool = false
+    @State private var offset: CGSize = CGSize(width: 0, height: 0)
+    @Binding var show: Bool
     var body: some View {
         VStack{
             HStack{
@@ -19,17 +20,22 @@ struct PickPlanetView: View {
             .padding()
             .background(.thinMaterial)
             .cornerRadius(20)
-            .animation(Animation.easeInOut(duration:0.4),value: show)
-            .onAppear{
-                show = true
-            }
-            .onDisappear{
-                show = false
+            .offset(offset)
+            .onChange(of: show){
+                if !show{
+                    withAnimation{
+                        offset.height = 0
+                    }
+                }
+                else{
+                    withAnimation{
+                        offset.height = -200
+                    }
+                }
             }
         }
     }
 }
 
 #Preview {
-    PickPlanetView()
 }
