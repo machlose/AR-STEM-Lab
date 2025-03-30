@@ -99,6 +99,7 @@ struct ARViewContainer: UIViewRepresentable {
                         overlayToggle.wrappedValue = true
                     }
                     
+                    planetaryAnchor.stopAllAnimations()
                     // Nie przerywamy subskrypcji – pozwalamy na ciągłą aktualizację obracania.
                     var newTransform = planetaryAnchor.transform
                     newTransform.translation += delta
@@ -132,6 +133,39 @@ struct ARViewContainer: UIViewRepresentable {
         }
     }
     
+    func moveCamera(arView: ARView, position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval){
+        guard let planetaryAnchor = arView.scene.findEntity(named: "planetaryAnchor") as? AnchorEntity else {
+            print("nie znaleziono planetaryAnchor")
+            return
+        }
+        
+        var cameraTransform = Transform()
+        cameraTransform.translation = -position
+        
+        let quatX = simd_quatf(angle: -rotation.x, axis: [1, 0, 0])
+        let quatY = simd_quatf(angle: -rotation.y, axis: [0, 1, 0])
+        let quatZ = simd_quatf(angle: -rotation.z, axis: [0, 0, 1])
+        cameraTransform.rotation = quatX * quatY * quatZ
+        
+        planetaryAnchor.move(to: cameraTransform, relativeTo: planetaryAnchor.parent, duration: duration, timingFunction: .easeInOut)
+//        print(cameraTransform)
+    }
+    
+    func moveCameraAlongPath(arView: ARView, path: [(position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval)]){
+        if path.isEmpty {
+            return
+        }
+        
+        let firstPoint = path[0]
+        let remainingPath = Array(path.dropFirst())
+        
+        moveCamera(arView: arView, position: firstPoint.position, rotation: firstPoint.rotation, duration: firstPoint.duration)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + firstPoint.duration){
+            moveCameraAlongPath(arView: arView, path: remainingPath)
+        }
+    }
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(selectedPlanet: $selectedPlanet, overlayToggle: $overlayToggle)
     }
@@ -151,6 +185,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         // Tworzymy kotwicę dla układu planetarnego
         let anchorEntity = AnchorEntity(world: .zero)
+        anchorEntity.name = "planetaryAnchor"
         context.coordinator.planetaryAnchor = anchorEntity
         for planet in context.coordinator.planets {
             if let planetEntity = planet.entity {
@@ -161,6 +196,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         // Dodajemy dodatkowe źródło światła – światło przypięte do kamery
         let cameraAnchor = AnchorEntity(.camera)
+        cameraAnchor.name = "cameraAnchor"
         let lightEntity = DirectionalLight()
         lightEntity.light.intensity = 1000
         lightEntity.light.color = .white
@@ -168,6 +204,156 @@ struct ARViewContainer: UIViewRepresentable {
         cameraAnchor.addChild(lightEntity)
         arView.scene.addAnchor(cameraAnchor)
         
+        let cameraPath: [(position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval)] = [
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+            (position: SIMD3<Float>(1,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 0.1),
+            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 0.1),
+        ]
+        moveCameraAlongPath(arView: arView, path: cameraPath)
         // Subskrypcja aktualizacji – animacja układu planetarnego
         context.coordinator.cancellable = arView.scene.subscribe(to: SceneEvents.Update.self) { event in
             context.coordinator.accumulatedTime += event.deltaTime
