@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @State public var currentView: Categories = .experiments
+    @State private var boom: Double = 0.0
     var body: some View {
         switch currentView {
         case .profile:

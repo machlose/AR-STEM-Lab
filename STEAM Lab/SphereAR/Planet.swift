@@ -18,6 +18,7 @@ struct Planet {
     var orbitSpeed: Float         // Prędkość orbitalna w radianach na sekundę
     var selfRotationSpeed: Float  // Prędkość obrotu wokół własnej osi w radianach na sekundę
     @State var planetInformation: PlanetInformation
+    public static var rotationSpeedModifier: Double = 1
     
     // Encja reprezentująca planetę w scenie AR
     var entity: ModelEntity?
@@ -41,6 +42,9 @@ struct Planet {
         self.planetInformation = planetInformation
 
         self.entity = createEntity()
+    }
+    public static func changeRotationModifier(_ speed: Double){
+        self.rotationSpeedModifier = speed
     }
     
     private func createEntity() -> ModelEntity? {
@@ -99,8 +103,9 @@ struct Planet {
     }
 
     func updateRotation(elapsed: Float) {
+        let speedModifier = Float(Planet.rotationSpeedModifier)
         guard let planetEntity = self.entity else { return }
-        let rotationAngle = elapsed * selfRotationSpeed
+        let rotationAngle = elapsed * selfRotationSpeed * speedModifier
         planetEntity.orientation = simd_quatf(angle: rotationAngle, axis: SIMD3<Float>(0, 1, 0))
     }
     
