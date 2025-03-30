@@ -59,9 +59,6 @@ struct PlanetOverlayView: View {
             .background(.thinMaterial)
             .tint(.red)
             .cornerRadius(10)
-            .onChange(of: planet?.name){
-                print(planet)
-            }
         }
     }
 }
