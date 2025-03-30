@@ -24,7 +24,7 @@ struct PlanetSpeedSlider: View {
             .background(.thinMaterial)
             .cornerRadius(20)
         }
-        .offset(x:0,y:-70)
+        .offset(x:0,y:-60)
     }
 }
 

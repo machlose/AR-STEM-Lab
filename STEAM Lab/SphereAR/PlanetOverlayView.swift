@@ -35,14 +35,14 @@ struct PlanetOverlayView: View {
                     
                     Divider()
                     
+                    Spacer()
                     VStack(alignment: .center){
+                        Spacer()
                         Text("Promień")
                             .font(.title2)
                             .bold()
-                        Group{
-                            Text(planet?.radius ?? "")
-                                .font(.title2)
-                        }
+                        Text(planet?.radius ?? "")
+                            .font(.title2)
                         Spacer()
                         Text("Masa")
                             .font(.title2)
@@ -53,6 +53,7 @@ struct PlanetOverlayView: View {
                         
                     }
                     .padding()
+                    Spacer()
                 }
             }
             .frame(height: 300)
@@ -64,4 +65,5 @@ struct PlanetOverlayView: View {
 }
 
 #Preview {
+    SolarView()
 }
