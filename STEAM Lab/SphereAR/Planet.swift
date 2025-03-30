@@ -19,7 +19,8 @@ struct Planet {
     var selfRotationSpeed: Float  // Prędkość obrotu wokół własnej osi w radianach na sekundę
     @State var planetInformation: PlanetInformation
     public static var rotationSpeedModifier: Double = 1
-    
+    var lastElapsed: Float
+
     // Encja reprezentująca planetę w scenie AR
     var entity: ModelEntity?
     
@@ -30,7 +31,8 @@ struct Planet {
          orbitCenter: SIMD3<Float> = SIMD3<Float>(0, 0, -1),
          orbitSpeed: Float,
          selfRotationSpeed: Float,
-         planetInformation: PlanetInformation
+         planetInformation: PlanetInformation,
+         lastElapsed: Float = 0
     ) {
         self.name = name
         self.textureName = textureName
@@ -40,8 +42,10 @@ struct Planet {
         self.orbitSpeed = orbitSpeed
         self.selfRotationSpeed = selfRotationSpeed
         self.planetInformation = planetInformation
+        self.lastElapsed = lastElapsed
 
         self.entity = createEntity()
+        print(lastElapsed)
     }
     public static func changeRotationModifier(_ speed: Double){
         self.rotationSpeedModifier = speed
@@ -102,17 +106,30 @@ struct Planet {
         planetEntity.position = SIMD3<Float>(newX, orbitCenter.y, newZ)
     }
 
-    func updateRotation(elapsed: Float) {
+    public func updateRotation(delta: Float) {
         let speedModifier = Float(Planet.rotationSpeedModifier)
         guard let planetEntity = self.entity else { return }
-        let rotationAngle = elapsed * selfRotationSpeed * speedModifier
+        
+        var rotationAngle = planetEntity.orientation.angle + (delta * selfRotationSpeed * speedModifier)
+        if rotationAngle > (.pi*2){
+            rotationAngle -= (.pi*2)
+        }
+                             
+        print(rotationAngle,delta,selfRotationSpeed,speedModifier)
+
         planetEntity.orientation = simd_quatf(angle: rotationAngle, axis: SIMD3<Float>(0, 1, 0))
     }
-    
+    public func setRotation(elapsed: Float) {
+        guard let planetEntity = self.entity else { return }
+        var rotationAngle = elapsed * selfRotationSpeed
+
+        planetEntity.orientation = simd_quatf(angle: rotationAngle, axis: SIMD3<Float>(0, 1, 0))
+    }
+
     /// Aktualizuje pełną animację: orbita i obrót.
-    func update(elapsed: Float) {
+    public func update(elapsed: Float,delta: Float) {
         updateOrbit(elapsed: elapsed)
-        updateRotation(elapsed: elapsed)
+        updateRotation(delta: delta)
     }
     
     /*func update(elapsed: Float) {

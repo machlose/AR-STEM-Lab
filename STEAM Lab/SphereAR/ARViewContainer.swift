@@ -365,11 +365,11 @@ struct ARViewContainer: UIViewRepresentable {
 //                print("tylko obrót")
                 for planet in context.coordinator.planets {
                     planet.updateOrbit(elapsed: context.coordinator.freezeTime)
-                    planet.updateRotation(elapsed: elapsed)
+                    planet.updateRotation(delta: Float(event.deltaTime))
                 }
             } else {
                 for planet in context.coordinator.planets {
-                    planet.update(elapsed: elapsed)
+                    planet.update(elapsed: elapsed,delta: Float(event.deltaTime))
                 }
             }
         }

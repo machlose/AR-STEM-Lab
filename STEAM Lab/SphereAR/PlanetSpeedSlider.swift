@@ -17,7 +17,7 @@ struct PlanetSpeedSlider: View {
                 Text("Prędkość obrotu planety")
                     .bold()
                 HStack{
-                    SliderView(outValue: $value)
+                    SliderView(forceUpdateOnChangeOf: $show, outValue: $value)
                 }
             }
             .padding()

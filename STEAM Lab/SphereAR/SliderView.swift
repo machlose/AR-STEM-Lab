@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SliderView: View {
     let height: CGFloat = 40
+    @Binding var forceUpdateOnChangeOf: Bool
     @Binding var outValue: Double
     @State private var Value: Double = 0
     @State private var LastValue: Double = 0
@@ -30,8 +31,8 @@ struct SliderView: View {
                             DragGesture(minimumDistance: 0)
                                 .onChanged{ value in
                                     Value = LastValue + value.translation.width
-                                    Value.clamp(min: 0, max: width-height-padd)
-                                    outValue = Double(Value)/Double(width-height-padd)
+                                    Value.clamp(min: 0, max: width-height)
+                                    outValue = Double(Value)/Double(width-height)
                                 }
                                 .onEnded{_ in 
                                     LastValue = Value
@@ -39,10 +40,14 @@ struct SliderView: View {
                         )
                         .foregroundStyle(.baseFont)
                 }
-            }
-            .onAppear{
-                Value = outValue*(gr.size.width-height-padd)
-                LastValue = outValue*(gr.size.width-height-padd)
+                .onChange(of: forceUpdateOnChangeOf){
+                    Value = outValue*(gr.size.width-height-padd)
+                    LastValue = outValue*(gr.size.width-height-padd)
+                }
+                .onAppear{
+                    Value = outValue*(gr.size.width-height-padd)
+                    LastValue = outValue*(gr.size.width-height-padd)
+                }
             }
         }
         .frame(height: height)

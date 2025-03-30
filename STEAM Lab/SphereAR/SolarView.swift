@@ -24,6 +24,12 @@ struct SolarView: View {
                 PlanetOverlayView(planet: $selectedPlanetInformation, show: $overlayShow)
             }
         }
+        .onChange(of: overlayShow){
+            if !overlayShow{
+                Planet.changeRotationModifier(1)
+                speed = 1
+            }
+        }
         .onChange(of: speed){
             Planet.changeRotationModifier(speed)
         }
