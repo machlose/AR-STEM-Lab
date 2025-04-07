@@ -8,7 +8,7 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var isFullScreen: Bool = false
+    @Published var Experiment: Bool = false
     @Published var Theme: ColorScheme
     @Published var userProfile: UserProfile
     init(){

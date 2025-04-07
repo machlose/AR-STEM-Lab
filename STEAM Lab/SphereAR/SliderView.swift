@@ -55,5 +55,5 @@ struct SliderView: View {
 }
 
 #Preview {
-    SolarView()
+//    SolarView()
 }

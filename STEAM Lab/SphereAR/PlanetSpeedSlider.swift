@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlanetSpeedSlider: View {
-    @State private var offset: CGSize = CGSize(width: 0, height: -200)
+    @State private var offset: CGSize = CGSize(width: 0, height: -300)
     @Binding var show: Bool
     @Binding var value: Double
     var body: some View {
@@ -29,5 +29,5 @@ struct PlanetSpeedSlider: View {
 }
 
 #Preview {
-    SolarView()
+//    SolarView()
 }

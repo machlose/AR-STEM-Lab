@@ -18,7 +18,7 @@ struct ContentView: View {
         case .experiments:
             ExperimentNavigationView()
         }
-        if !appState.isFullScreen{
+        if !appState.Experiment{
             CategoryBarView(currentView: $currentView)
         }
     }

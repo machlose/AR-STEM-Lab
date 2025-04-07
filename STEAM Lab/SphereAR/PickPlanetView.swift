@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PickPlanetView: View {
-    @State private var offset: CGSize = CGSize(width: 0, height: -200)
+    @State private var offset: CGSize = CGSize(width: 0, height: -300)
     @Binding var show: Bool
     var body: some View {
         OffsetWrapper(show: $show, offset: offset, invertState: true){

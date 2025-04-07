@@ -11,15 +11,15 @@ struct TestExperimentView: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        SolarView()
+        Text("")
         .onAppear{
-            appState.isFullScreen = true
+            appState.Experiment = true
         }
-        .onDisappear{
-            withAnimation(Animation.easeIn(duration: 0.1)){
-                appState.isFullScreen = false
-            }
-        }
+//        .onDisappear{
+//            withAnimation(Animation.easeIn(duration: 0.1)){
+//                appState.Experiment = false
+//            }
+//        }
     }
 }
 

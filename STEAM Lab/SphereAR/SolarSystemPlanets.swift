@@ -4,29 +4,29 @@
 //
 //  Created by Rafał Michałowski on 20/03/2025.
 //
-
+ 
 import RealityKit  // Umożliwia korzystanie z klas i funkcji do tworzenia i manipulowania encjami 3D, materiałami itp.
 import simd       // Dostarcza typy matematyczne (np. SIMD3<Float>) oraz operacje na wektorach i kwaternionach, które są wykorzystywane do obliczeń transformacji
-
+ 
 // MARK: - Parametry Ziemi (można je zmieniać)
 let earthOrbitRadiusConstant: Float = 0.5      // Promień orbity Ziemi w metrach
 let earthPlanetRadiusConstant: Float = 0.1       // Promień Ziemi w metrach
 let earthOrbitPeriod: Float = 10                 // Czas pełnego ruchu orbity Ziemi w sekundach
 let earthSelfRotationPeriod: Float = 2           // Czas pełnego obrotu Ziemi wokół własnej osi w sekundach
-
+ 
 // Obliczanie prędkości Ziemi
 let earthOrbitSpeedConstant: Float = (2 * Float.pi) / earthOrbitPeriod       // Prędkość orbitalna (2π/T)
 let earthSelfRotationSpeedConstant: Float = (2 * Float.pi) / earthSelfRotationPeriod // Prędkość obrotu wokół własnej osi
-
+ 
 // MARK: - Funkcja pomocnicza do obliczania prędkości orbitalnej dla innych planet
 func orbitalSpeed(relativeDistance: Float) -> Float {
     // Prawo Keplera: okres orbity T ∝ r^(3/2)
     let period = earthOrbitPeriod * pow(relativeDistance, 1.5)
     return (2 * Float.pi) / period
 }
-
+ 
 let sunPlanetRadiusConstant: Float = 0.12
-
+ 
 // MARK: - Lista planet układu słonecznego
 // Przyjmujemy, że orbitRadius innych planet jest skalowany względem Ziemi (0.5 m odpowiada 1 AU)
 // a orbitSpeed obliczamy z zależności T ∝ r^(3/2)
@@ -41,7 +41,7 @@ let solarSystemPlanets: [Planet] = [
         planetInformation:
             PlanetInformation(
                 name:"Słońce",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pretium sagittis maximus. Phasellus sit amet pulvinar turpis. Quisque condimentum quis libero et vulputate. Curabitur interdum lacus sit amet mauris porttitor, in finibus libero sagittis. Nam neque est, mollis at ante sed, mattis sollicitudin ex. Cras nec ante quis diam faucibus pretium. Phasellus pellentesque sagittis semper. Quisque auctor orci porttitor ex dignissim, ut lobortis libero suscipit. Aliquam aliquam, neque quis tincidunt pulvinar, diam justo tempor urna, ut suscipit ex turpis id elit. Ut aliquam vitae est quis viverra. Proin enim eros, pretium id maximus at, lacinia id massa. Cras maximus neque eros, ac cursus enim consequat vehicula. Sed purus tellus, auctor id purus eu, dictum rhoncus tellus. Vivamus ut sem congue arcu rhoncus suscipit.",
+                description: "Słońce to gwiazda znajdująca się w centrum Układu Słonecznego, składająca się głównie z wodoru i helu. Jest źródłem światła i ciepła dla Ziemi, a jego energia powstaje dzięki reakcjom termojądrowym w jądrze. Ma średnicę około 1,39 miliona km i temperaturę powierzchni wynoszącą około 5 500°C. Słońce odgrywa kluczową rolę w utrzymaniu życia na naszej planecie.",
                 radius: "657tys. km",
                 mass:"1.9*10^30 kg"
             )
@@ -167,12 +167,12 @@ let solarSystemPlanets: [Planet] = [
             )
     )
 ]
-
-
+ 
+ 
 /*
 import RealityKit
 import simd
-
+ 
 // Lista planet w układzie słonecznym, przy czym wartości orbit przeskalowano do układu, w którym Ziemia ma orbitę o promieniu 0.5 m
 let solarSystemPlanets: [Planet] = [
     Planet(

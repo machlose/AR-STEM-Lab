@@ -65,5 +65,5 @@ struct PlanetOverlayView: View {
 }
 
 #Preview {
-    SolarView()
+//    SolarView()
 }

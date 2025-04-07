@@ -12,9 +12,14 @@ struct STEAM_LabApp: App {
     @StateObject private var appState = AppState()
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(appState)
-                .preferredColorScheme(appState.Theme)
+            if !appState.Experiment{
+                ContentView()
+                    .environmentObject(appState)
+                    .preferredColorScheme(appState.Theme)
+            }
+            else{
+                SolarView(reset: $appState.Experiment)
+            }
         }
     }
 }

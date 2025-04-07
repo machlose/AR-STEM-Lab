@@ -4,28 +4,24 @@
 //
 //  Created by uczen on 21/03/2025.
 //
-
+ 
 import SwiftUI
-
+ 
 struct SubjectView: View {
     @EnvironmentObject var appState: AppState
     let subjectName: String
     let experimentList: [String: [ExperimentButton]] = [
         "Fizyka": [
-            ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
-            ExperimentButton(name:"Eksperyment Fizyka 2",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
-            ExperimentButton(name:"Eksperyment Fizyka 3",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())),
-            ExperimentButton(name:"Eksperyment 4",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
+            ExperimentButton(name:"Układ Słoneczny",description: "Poznaj Planety Układu słonecznego", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Ziemia i Księżyc",description: "Poznaj ziemię i księżyc", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Czarna dziura",description: "Poznaj wpływ czarnych dziur na planety dookoła", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Zabawa z grawitacją",description: "Stwórz swój własny układ planetarny", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView()))
+
+
             ],
-        "Chemia": [
-            ExperimentButton(name:"Eksperyment Chemia 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
-            ],
-        "Matematyka": [
-            ExperimentButton(name:"Eksperyment Matematyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
-            ],
-        "Biologia": [
-            ExperimentButton(name:"Eksperyment Biologia 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView()))
-            ]
+        "Chemia": [],
+        "Matematyka": [],
+        "Biologia": []
         ]
     var body: some View {
         NavigationStack{
@@ -44,9 +40,8 @@ struct SubjectView: View {
         .navigationTitle(subjectName)
     }
 }
-
+ 
 #Preview {
     SubjectView(subjectName: "Chemia")
         .environmentObject(AppState())
 }
-

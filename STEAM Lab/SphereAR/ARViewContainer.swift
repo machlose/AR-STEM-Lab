@@ -209,7 +209,7 @@ struct ARViewContainer: UIViewRepresentable {
             (position: SIMD3<Float>(-1,0,0), rotation: SIMD3<Float>(1,0,0), duration: 1),
             (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
         ]
-        moveCameraAlongPath(arView: arView, path: cameraPath)
+//        moveCameraAlongPath(arView: arView, path: cameraPath)
         // Subskrypcja aktualizacji – animacja układu planetarnego
         context.coordinator.cancellable = arView.scene.subscribe(to: SceneEvents.Update.self) { event in
             context.coordinator.accumulatedTime += event.deltaTime
