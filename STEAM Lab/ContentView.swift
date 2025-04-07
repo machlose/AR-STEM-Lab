@@ -18,7 +18,7 @@ struct ContentView: View {
         case .experiments:
             ExperimentNavigationView()
         }
-        if !appState.Experiment{
+        if (appState.Experiment == nil){
             CategoryBarView(currentView: $currentView)
         }
     }

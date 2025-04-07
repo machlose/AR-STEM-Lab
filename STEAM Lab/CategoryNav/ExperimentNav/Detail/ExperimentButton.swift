@@ -36,8 +36,8 @@ struct ExperimentButton: Identifiable{
     var name: String
     var description: String
     var detailedDescription: String
-    var experimentView: AnyView
-    init(name: String, description: String, detailedDescription: String, experimentView: AnyView) {
+    var experimentView: Experiments
+    init(name: String, description: String, detailedDescription: String, experimentView: Experiments) {
         self.name = name
         self.description = description
         self.detailedDescription = detailedDescription
@@ -46,5 +46,5 @@ struct ExperimentButton: Identifiable{
 }
 
 #Preview {
-    ExperimentButtonView(data: ExperimentButton(name:"Eksperyment", description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())))
+    ExperimentButtonView(data: ExperimentButton(name:"Eksperyment", description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: Experiments.solar))
 }

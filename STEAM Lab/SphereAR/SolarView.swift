@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SolarView: View {
     // Wybrana planeta – gdy nie jest nil, wyświetlamy overlay z informacjami
-    @Binding var reset: Bool
+    @Binding var reset: Experiments?
     @State private var selectedPlanetInformation: PlanetInformation? = nil
     @State private var overlayShow: Bool = false
     @State private var speed: Double = 1
@@ -20,7 +20,7 @@ struct SolarView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack{
                     Button{
-                        reset = false
+                        reset = nil
                     }
                     label:{
                         HStack{

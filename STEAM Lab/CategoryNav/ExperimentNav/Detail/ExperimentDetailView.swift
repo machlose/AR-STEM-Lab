@@ -21,8 +21,8 @@ struct ExperimentDetailView: View {
                 ScrollView{
                     VStack{
                         Text(SelectedExperiment.detailedDescription)
-                        NavigationLink{
-                            SelectedExperiment.experimentView
+                        Button{
+                            appState.Experiment = SelectedExperiment.experimentView
                         } label: {
                             StartButtonView(content: "Rozpocznij eksperyment")
                         }
@@ -34,6 +34,6 @@ struct ExperimentDetailView: View {
 }
 
 #Preview {
-    ExperimentDetailView(SelectedExperiment: ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: AnyView(TestExperimentView())))
+    ExperimentDetailView(SelectedExperiment: ExperimentButton(name:"Eksperyment Fizyka 1",description: "Lorem ipsum dolor sit amet consectetur adipiscing elit", detailedDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit", experimentView: Experiments.solar))
         .environmentObject(AppState())
 }

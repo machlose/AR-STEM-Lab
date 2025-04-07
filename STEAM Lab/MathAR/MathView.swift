@@ -8,53 +8,37 @@
 import SwiftUI
 
 struct MathView: View {
-    @Binding var reset: Bool
-    @State private var selectedPlanetInformation: PlanetInformation? = nil
-    @State private var overlayShow: Bool = false
-    @State private var speed: Double = 1
-
+    @EnvironmentObject private var appState: AppState
     var body: some View {
         ZStack {
-            ARViewContainer(selectedPlanet: $selectedPlanetInformation, overlayToggle: $overlayShow)
+            MathARViewContainer()
                 .edgesIgnoringSafeArea(.all)
             VStack{
-                    Button{
-                        reset = false
+                Button{
+                    appState.Experiment = nil
+                }
+                label:{
+                    HStack{
+                        Image(systemName: "chevron.backward")
+                        Text("Back")
+                            .foregroundStyle(.primary)
+                        Spacer()
                     }
-                    label:{
-                        HStack{
-                            Image(systemName: "chevron.backward")
-                            Text("Back")
-                                .foregroundStyle(.primary)
-                            Spacer()
-                        }
-                        .padding()
-                    }
-                PickPlanetView(show: $overlayShow)
-                PlanetSpeedSlider(show: $overlayShow, value: $speed)
+                    .padding()
+                }
                 Spacer()
-                PlanetOverlayView(planet: $selectedPlanetInformation, show: $overlayShow)
             }
-        }
-        .onChange(of: overlayShow){
-            if !overlayShow{
-                Planet.changeRotationModifier(1)
-                speed = 1
-            }
-        }
-        .onChange(of: speed){
-            Planet.changeRotationModifier(speed)
         }
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        @StateObject var appState = AppState()
-////        SolarView()
-////            .environmentObject(appState)
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        @StateObject var appState = AppState()
+        MathView()
+            .environmentObject(appState)
+    }
+}
 
 
 /*
