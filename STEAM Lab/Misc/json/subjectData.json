@@ -3,23 +3,23 @@
     "subjectName" : "Fizyka",
     "bgColor" : "PhysicsOrange",
     "iconName" : "PhysicsPlanet",
-    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit"
+    "subText" : "Poznaj tajemnice wszechświata"
   },
   {
     "iconName" : "ChemFlask",
     "subjectName" : "Chemia",
-    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+    "subText" : "Wykonaj interesujące doświadczenia chemiczne",
     "bgColor" : "ChemistryYellow",
   },
   {
     "iconName" : "MathCube",
-    "subText" : "Lorem ipsushsdkgfjlskdfgj dolor sit amet consectetur adipiscing elit",
+    "subText" : "Odkryj piękno liczb i równań",
     "bgColor" : "MathBlue",
     "subjectName" : "Matematyka"
   },
   {
     "subjectName" : "Biologia",
-    "subText" : "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+    "subText" : "Zobacz jak działa życie na Ziemi",
     "iconName" : "BiologyPlanet",
     "bgColor" : "BiologyGreen"
   }

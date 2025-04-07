@@ -8,27 +8,18 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var isFullScreen: Bool = false
-    @AppStorage("selectedTheme") private var storedTheme: String = "system"
-    @Published var colorScheme: ColorScheme? = nil
-    
+    @Published var Experiment: Bool = false
+    @Published var Theme: ColorScheme? = nil
+    @Published var userProfile: UserProfile
     init(){
-        loadTheme()
+        userProfile = UserDefaults.getObject(forKey: "profile") ?? UserProfile()
     }
-    
-    func loadTheme(){
-        switch storedTheme{
-        case "light":
-            colorScheme = .light
-        case "dark":
-            colorScheme = .dark
-        default:
-            colorScheme = nil
+    func checkSavedColorScheme(){
+        if(userProfile.preferedTheme != nil){
+            self.Theme = (userProfile.preferedTheme == .dark) ? ColorScheme.dark : ColorScheme.light
         }
-    }
-    
-    func setTheme(colorScheme: ColorScheme?){
-        self.colorScheme = colorScheme
-        self.storedTheme = colorScheme == .dark ? "dark" : colorScheme == .light ? "light" : "system"
+        else{
+            userProfile.preferedTheme = (Theme == ColorScheme.dark) ? Themes.dark : Themes.light
+        }
     }
 }

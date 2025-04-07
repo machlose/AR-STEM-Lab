@@ -27,7 +27,6 @@ struct SubjectButtonView: View {
                     .font(.footnote)
                     .foregroundStyle(Color.font.secondary)
                     .multilineTextAlignment(.leading)
-                    .multilineTextAlignment(.leading)
             }
             .frame(maxWidth: 400, alignment: .leading)
         }

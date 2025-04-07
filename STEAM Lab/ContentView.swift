@@ -9,26 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
-    @Environment(\.colorScheme) var systemColorScheme
     @State public var currentView: Categories = .experiments
+    @State private var boom: Double = 0.0
     var body: some View {
-        VStack{
-            switch currentView {
-            case .profile:
-                ProfileView()
-            case .experiments:
-                ExperimentNavigationView()
-            }
-            if !appState.isFullScreen{
-                CategoryBarView(currentView: $currentView)
-            }
+        switch currentView {
+        case .profile:
+            ProfileView()
+        case .experiments:
+            ExperimentNavigationView()
         }
-        .environment(\.colorScheme, appState.colorScheme ?? systemColorScheme)
+        if !appState.Experiment{
+            CategoryBarView(currentView: $currentView)
+        }
     }
-    
 }
 
 #Preview {
+    @Previewable @StateObject var appState = AppState()
     ContentView()
-        .environmentObject(AppState())
+        .environmentObject(appState)
+        .preferredColorScheme(appState.Theme)
 }

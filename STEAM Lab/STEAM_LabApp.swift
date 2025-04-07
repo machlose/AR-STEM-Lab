@@ -10,10 +10,24 @@ import SwiftUI
 @main
 struct STEAM_LabApp: App {
     @StateObject private var appState = AppState()
+    @Environment(\.colorScheme) private var colorScheme
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(appState)
+            Group{
+                if !appState.Experiment{
+                    ContentView()
+                        .environmentObject(appState)
+                        .preferredColorScheme(appState.Theme)
+                }
+                else{
+                    //SolarView(reset: $appState.Experiment)
+                    ParticleView(reset: $appState.Experiment)
+                }
+            }
+            .onAppear{
+                appState.Theme = colorScheme
+                appState.checkSavedColorScheme()
+            }
         }
     }
 }
