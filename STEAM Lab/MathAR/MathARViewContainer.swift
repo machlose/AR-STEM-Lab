@@ -45,13 +45,12 @@ struct MathARViewContainer: UIViewRepresentable {
         
         var material = PhysicallyBasedMaterial()
 //        material.baseColor = PhysicallyBasedMaterial.BaseColor.init(tint:.red)
-        material.baseColor = .init(tint: .red, texture: .init(textureResource))
 
         let cubeEntity = ModelEntity(mesh: sphereMesh, materials: [material])
         cubeEntity.generateCollisionShapes(recursive: true)
         
         cubeEntity.position = SIMD3(x: 0.0, y: 0.0, z: -100.0)
-        cubeEntity.transform.rotation = simd_quatf(angle: .pi/4, axis: SIMD3<Float>(1,10000,10000).Normalized())
+        cubeEntity.transform.rotation = simd_quatf(angle: .pi/4, axis: SIMD3<Float>(1,10000,10000).Normalized());
         let cone2 = cubeEntity.clone(recursive: true)
         
         cone2.scale *= Float(1.02)
