@@ -14,18 +14,14 @@ struct STEAM_LabApp: App {
     var body: some Scene {
         WindowGroup {
             Group{
-                if (appState.Experiment == nil){
+                if !appState.Experiment{
                     ContentView()
                         .environmentObject(appState)
                         .preferredColorScheme(appState.Theme)
                 }
                 else{
-                    if(appState.Experiment == .solar){
-                        SolarView(reset: $appState.Experiment)
-                    }
-                    else{
-                        Text("")
-                    }
+                    //SolarView(reset: $appState.Experiment)
+                    ParticleView(reset: $appState.Experiment)
                 }
             }
             .onAppear{

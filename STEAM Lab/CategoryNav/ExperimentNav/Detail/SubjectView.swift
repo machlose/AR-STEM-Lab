@@ -12,10 +12,10 @@ struct SubjectView: View {
     let subjectName: String
     let experimentList: [String: [ExperimentButton]] = [
         "Fizyka": [
-            ExperimentButton(name:"Układ Słoneczny",description: "Poznaj Planety Układu słonecznego", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: .solar),
-            ExperimentButton(name:"Ziemia i Księżyc",description: "Poznaj ziemię i księżyc", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: .solar),
-            ExperimentButton(name:"Czarna dziura",description: "Poznaj wpływ czarnych dziur na planety dookoła", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: .solar),
-            ExperimentButton(name:"Zabawa z grawitacją",description: "Stwórz swój własny układ planetarny", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: .solar)
+            ExperimentButton(name:"Układ Słoneczny",description: "Poznaj Planety Układu słonecznego", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Ziemia i Księżyc",description: "Poznaj ziemię i księżyc", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Czarna dziura",description: "Poznaj wpływ czarnych dziur na planety dookoła", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView())),
+            ExperimentButton(name:"Zabawa z grawitacją",description: "Stwórz swój własny układ planetarny", detailedDescription: "Kliknij na planetę i zobacz informacje o niej", experimentView: AnyView(TestExperimentView()))
 
 
             ],

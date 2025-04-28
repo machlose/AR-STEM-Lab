@@ -8,7 +8,7 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var Experiment: Experiments?
+    @Published var Experiment: Bool = false
     @Published var Theme: ColorScheme? = nil
     @Published var userProfile: UserProfile
     init(){
@@ -22,7 +22,4 @@ class AppState: ObservableObject {
             userProfile.preferedTheme = (Theme == ColorScheme.dark) ? Themes.dark : Themes.light
         }
     }
-}
-enum Experiments{
-    case solar
 }
