@@ -15,33 +15,59 @@ let Electron: Particle = Particle(name: "Electron", textureName: "electron", rad
 let scale:Float = 1
 let speed:Float = 3
 
-func generateElectronShells(electronCount: Int) -> [Particle] {
-    let shellCapacities = [2, 8, 18, 32]
-    let baseRadius: Float = 0.25 * scale
+func generateAtomicCenter(Protons: Int, Neutrons: Int) -> [Particle]{
+    var particles: [Particle] = []
+    var positions: [SIMD3<Float>] = []
+    
+    for i in 0..<(Protons+Neutrons){
+        
+    }
+    
+    positions.shuffle()
+    
+    for i in 0..<Protons{
+        particles.append(Particle(name: "Proton", textureName: "proton", radius: 0.1 * scale, orbitRadius: 0 * scale, orbitCenter: positions[i], orbitSpeed: 0))
+    }
+    
+    for i in 0..<Neutrons{
+        particles.append(Particle(name: "Neutron", textureName: "neutron", radius: 0.1 * scale, orbitRadius: 0, orbitCenter: positions[Protons+i], orbitSpeed: 0))
+    }
+    
+    return particles
+}
+
+func generateElectrons(K: Int = 1, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 0, P: Int = 0) -> [Particle] {
+    //let shellCapacities = [2, 8, 18, 32, 50 ,72]
     var electrons: [Particle] = []
-    var remaining = electronCount
-    var shellIndex = 0
 
-    while remaining > 0 && shellIndex < shellCapacities.count {
-        let electronsInShell = min(remaining, shellCapacities[shellIndex])
-        let orbitRadius = baseRadius + Float(shellIndex) * 0.1 * scale
-
-        for i in 0..<electronsInShell {
-            electrons.append(
-                Particle(
-                    name: "Electron",
-                    textureName: "electron",
-                    radius: 0.02 * scale,
-                    orbitRadius: orbitRadius,
-                    orbitCenter: SIMD3<Float>(0, 0, 0),
-                    orbitSpeed: 1 * speed,
-                    orbitTimeOffset: 6 / speed * Float(i) / Float(electronsInShell)
-                )
-            )
-        }
-
-        remaining -= electronsInShell
-        shellIndex += 1
+    for i in 0..<K {
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.25 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(K))
+        )
+    }
+    
+    for i in 0..<L {
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.35 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(L))
+        )
+    }
+    
+    for i in 0..<M {
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.45 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(M))
+        )
+    }
+    
+    for i in 0..<N {
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.55 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(N))
+        )
+    }
+    
+    for i in 0..<O {
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.65 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(O))
+        )
+    }
+    
+    for i in 0..<P {
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.75 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(P))
+        )
     }
 
     return electrons
@@ -118,8 +144,7 @@ let Atoms: [Atom] = [
 
             // Elektrony
             
-        ] + generateElectronShells(electronCount: 6)
-
+        ] + generateElectrons(K: 0, L: 4)
     )
 ]
 

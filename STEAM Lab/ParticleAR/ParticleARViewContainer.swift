@@ -200,7 +200,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
         lightEntity.light.color = .white
         lightEntity.transform.rotation = simd_quatf(angle: .pi / 4, axis: SIMD3<Float>(1, 0, 0))
         cameraAnchor.addChild(lightEntity)
-        arView.scene.addAnchor(cameraAnchor)
+        arView.scene.addAnchor(cameraAnchor) 
         
         let cameraPath: [(position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval)] = [
             //(position: SIMD3<Float>(0,0,1), rotation: SIMD3<Float>(0,0,0), duration: 0),
