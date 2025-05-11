@@ -77,7 +77,7 @@ func generateElectrons(K: Int = 1, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 
     }
     
     for i in 0..<M {
-        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.45 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(M-1))
+        electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: 0.45 * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(i) / Float(Double(M)))
         )
     }
     
@@ -100,7 +100,8 @@ func generateElectrons(K: Int = 1, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 
 }
 
 
-class Atom {
+class Atom: Identifiable {
+    var id: Int { number }
     var name: String = "Wodór"
     var number: Int = 1
     var mass: Float = 1.0
