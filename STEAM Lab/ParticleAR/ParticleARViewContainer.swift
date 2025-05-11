@@ -11,7 +11,7 @@ import ARKit
 import Combine
 
 struct ParticleARViewContainer: UIViewRepresentable {
-    var currentAtom: Int = 3
+    var currentAtom: Int = 118
     class AtomCoordinator: NSObject {
         var cancellable: Cancellable?
         var Particles: [Particle] //= Atoms[1].particles
@@ -32,7 +32,8 @@ struct ParticleARViewContainer: UIViewRepresentable {
         var overlayToggle: Bool = true
 
         init(currentAtom: Int) {
-            Particles = Atoms[currentAtom].particles
+            Particles = generateAtomicCenter(Protons: Atoms[currentAtom].protons, Neutrons: Atoms[currentAtom].neutrons) + generateElectrons(K: Atoms[currentAtom].K, L: Atoms[currentAtom].L, M: Atoms[currentAtom].M, N: Atoms[currentAtom].N, O: Atoms[currentAtom].O, P: Atoms[currentAtom].P)
+            //Atoms[currentAtom].particles
         }
         
 //        @objc func handleTap(recognizer: UITapGestureRecognizer) {
@@ -206,7 +207,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
             //(position: SIMD3<Float>(0,0,1), rotation: SIMD3<Float>(0,0,0), duration: 0),
             //(position: SIMD3<Float>(0,1,1), rotation: SIMD3<Float>(0,0,0), duration: 0),
 //            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 1),
-            (position: SIMD3<Float>(0,0,1), rotation: SIMD3<Float>(1.5,0,0), duration: 0),
+            (position: SIMD3<Float>(0,0,0.5), rotation: SIMD3<Float>(1.5,0,0), duration: 0),
 //            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
             //(position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
             //(position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
