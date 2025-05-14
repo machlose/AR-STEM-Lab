@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DrawerTab: View {
+    @Binding var title :String;
     var body: some View {
         ZStack{
             Rectangle()
@@ -22,7 +23,7 @@ struct DrawerTab: View {
                         .frame(width: 60,height: 10)
                         .cornerRadius(10)
                     Spacer()
-                    Text("Bryły")
+                    Text(title)
                         .font(.title)
                         .fontWeight(.bold)
                     Spacer()
@@ -35,5 +36,7 @@ struct DrawerTab: View {
 }
 
 #Preview {
-    DrawerTab()
+    ContentDrawer{
+        Text("a")
+    }
 }
