@@ -23,6 +23,7 @@ struct ExperimentDetailView: View {
                         Text(SelectedExperiment.detailedDescription)
                         Button{
                             appState.Experiment = SelectedExperiment.experimentView
+                            print(appState.Experiment)
                         } label: {
                             StartButtonView(content: "Rozpocznij eksperyment")
                         }

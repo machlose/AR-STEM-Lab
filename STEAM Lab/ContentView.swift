@@ -12,16 +12,14 @@ struct ContentView: View {
     @State public var currentView: Categories = .experiments
     @State private var boom: Double = 0.0
     var body: some View {
-        ZStack{
-//            switch currentView {
-//            case .profile:
-//                ProfileView()
-//            case .experiments:
-//                ExperimentNavigationView()
-//            }
-//            if (appState.Experiment == nil){
-//                CategoryBarView(currentView: $currentView)
-//            }
+        switch currentView {
+        case .profile:
+            ProfileView()
+        case .experiments:
+            ExperimentNavigationView()
+        }
+        if (appState.Experiment == nil){
+            CategoryBarView(currentView: $currentView)
         }
     }
 }

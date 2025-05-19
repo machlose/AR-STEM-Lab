@@ -19,7 +19,9 @@ struct SubjectView: View {
 
 
             ],
-        "Chemia": [],
+        "Chemia": [
+            ExperimentButton(name:"Chemia 1",description: "Poznaj Atomy", detailedDescription: "tak", experimentView: .particle),
+        ],
         "Matematyka": [],
         "Biologia": []
         ]

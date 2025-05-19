@@ -25,4 +25,5 @@ class AppState: ObservableObject {
 }
 enum Experiments{
     case solar
+    case particle
 }

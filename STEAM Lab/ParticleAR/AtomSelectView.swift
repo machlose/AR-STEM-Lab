@@ -14,12 +14,12 @@ struct AtomSelectView: View {
             ScrollView{
                 VStack(spacing:15){
                     ForEach(Atoms) { atom in
-                        NavigationLink{
-//                            ExperimentDetailView(SelectedExperiment: )
-                            TestExperimentView() // 
-                        } label:{
-                            ExperimentButtonView(data: ExperimentButton(name: atom.name,description: atom.description, detailedDescription: "", experimentView: AnyView(TestExperimentView())))
-                        }
+//                        NavigationLink{
+////                            ExperimentDetailView(SelectedExperiment: )
+//                            TestExperimentView() // 
+//                        } label:{
+//                            ExperimentButtonView(data: ExperimentButton(name: atom.name,description: atom.description, detailedDescription: "", experimentView: AnyView(TestExperimentView())))
+//                        }
                     }
                 }
             }

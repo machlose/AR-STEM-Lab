@@ -23,13 +23,18 @@ struct STEAM_LabApp: App {
                     if(appState.Experiment == .solar){
                         SolarView(reset: $appState.Experiment)
                     }
+                    if(appState.Experiment == .particle){
+                        ParticleView(reset: $appState.Experiment)
+                    }
                     else{
                         Text("")
                     }
                 }
             }
             .onAppear{
+                print(appState.Experiment)
                 appState.Theme = colorScheme
+//                appState.Experiment = .particle
                 appState.checkSavedColorScheme()
             }
         }

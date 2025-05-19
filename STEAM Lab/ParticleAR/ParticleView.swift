@@ -8,7 +8,7 @@ import SwiftUI
 
 struct ParticleView: View {
     // Wybrana planeta – gdy nie jest nil, wyświetlamy overlay z informacjami
-    @Binding var reset: Bool
+    @Binding var reset: Experiments?
 
     var body: some View {
         ZStack {
@@ -16,7 +16,7 @@ struct ParticleView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack{
                 Button{
-                    reset = false
+                    reset = nil
                 }
                 label:{
                     HStack{
