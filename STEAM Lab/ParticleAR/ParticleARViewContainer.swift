@@ -207,7 +207,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
             //(position: SIMD3<Float>(0,0,1), rotation: SIMD3<Float>(0,0,0), duration: 0),
             //(position: SIMD3<Float>(0,1,1), rotation: SIMD3<Float>(0,0,0), duration: 0),
 //            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(-1,0,0), duration: 1),
-            (position: SIMD3<Float>(0,0,0.5), rotation: SIMD3<Float>(1.5,0,0), duration: 0),
+            (position: SIMD3<Float>(0,0,0.5), rotation: SIMD3<Float>(5,0,0).Normalized(), duration: 0),
 //            (position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
             //(position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
             //(position: SIMD3<Float>(0,0,0), rotation: SIMD3<Float>(0,0,0), duration: 1),
