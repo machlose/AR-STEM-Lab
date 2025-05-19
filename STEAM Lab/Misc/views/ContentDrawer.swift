@@ -65,7 +65,6 @@ struct ContentDrawer<Label:View>: View {
                         Spacer()
                     }
                     .frame(width: gd.size.width, height:ContentHeight)
-                    .padding([.bottom])
                     .offset(translation)
                 }
                 .geometryGroup()

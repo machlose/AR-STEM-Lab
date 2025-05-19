@@ -9,20 +9,51 @@ import SwiftUI
  
 struct AtomSelectView: View {
     @EnvironmentObject var appState: AppState
+    @State var string: String = ""
+    @State var atomy = Atoms
     var body: some View {
         NavigationStack{
+            VStack(){
+            HStack(){
+                Text("ATOMY")
+                    .font(.largeTitle)
+                    .fontWeight(.heavy)
+                Spacer()
+            }
+            ZStack{
+                TextField("Wyszukaj atom", text:$string)
+            }
             ScrollView{
-                VStack(spacing:15){
-                    ForEach(Atoms) { atom in
-//                        NavigationLink{
-////                            ExperimentDetailView(SelectedExperiment: )
-//                            TestExperimentView() // 
-//                        } label:{
-//                            ExperimentButtonView(data: ExperimentButton(name: atom.name,description: atom.description, detailedDescription: "", experimentView: AnyView(TestExperimentView())))
-//                        }
+                    ForEach(atomy) { atom in
+                        ZStack{
+                            Rectangle()
+                                .fill(.ultraThinMaterial)
+                                .cornerRadius(20)
+                            HStack{
+                                AtomicIcon(atom: atom)
+                                Spacer()
+                                HStack{
+                                    VStack{
+                                        Text(atom.description)
+                                            .multilineTextAlignment(.leading)
+                                            .font(.title2)
+                                        Spacer()
+                                        
+                                    }
+                                    Spacer()
+                                }
+                                .padding()
+                            }
+                        }
+                        .frame(height: 150)
+                        .padding(.bottom)
                     }
                 }
             }
+        }
+        .padding(.horizontal)
+        .onAppear{
+            atomy.remove(at: 0)
         }
         .navigationTitle("Wybierz atom")
     }

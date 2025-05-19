@@ -5,6 +5,7 @@
 //  Created by Adrian Nowacki on 07/04/2025.
 //
 
+import SwiftUI
 import RealityKit  // Umożliwia korzystanie z klas i funkcji do tworzenia i manipulowania encjami 3D, materiałami itp.
 import simd       // Dostarcza typy matematyczne (np. SIMD3<Float>) oraz operacje na wektorach i kwaternionach, które są wykorzystywane do obliczeń transformacji
 
@@ -108,6 +109,7 @@ class Atom: Identifiable {
     var description: String = ""
     var protons: Int = 1
     var neutrons: Int = 0
+    var color: Color?
     var K: Int = 1
     var L: Int = 0
     var M: Int = 0
@@ -116,11 +118,12 @@ class Atom: Identifiable {
     var P: Int = 0
     var particles: [Particle] = []
     
-    init(name: String = "test", number: Int = 0, mass: Float = 0, description: String = "", Protons: Int = 1, Neutrons: Int = 0, K: Int = 0, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 0, P: Int = 0, particles: [Particle] = []) {
+    init(name: String = "test", number: Int = 0, mass: Float = 0, description: String = "", color: Color? = nil, Protons: Int = 1, Neutrons: Int = 0, K: Int = 0, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 0, P: Int = 0, particles: [Particle] = []) {
         self.name = name
         self.number = number
         self.mass = mass
         self.description = description
+        self.color = color
         self.protons = Protons
         self.neutrons = Neutrons
         self.K = K
@@ -143,6 +146,7 @@ let Atoms: [Atom] = [
         number: 1,
         mass: 1.0,
         description: "Najprostszy atom, składa się z jednego protonu i jednego elektronu.",
+        color:.red,
         Protons: 1, Neutrons: 0, K: 1
     ),
     
