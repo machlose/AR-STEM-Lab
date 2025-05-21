@@ -157,7 +157,7 @@ struct ContentDrawer<Label:View>: View {
 }
 
 #Preview {
-    ContentDrawer(title:"Bryły"){
-        ContentScroll()
+    ContentDrawer(title:"Bryły",ContentHeight: 1000){
+        AtomSelectView()
     }
 }

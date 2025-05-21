@@ -9,31 +9,33 @@ import SwiftUI
 
 struct AtomicIcon: View {
     @State var atom: Atom
-    @State var size: CGSize = CGSize(width: 200, height: 150)
+    @State var size: CGSize = CGSize(width: 35, height:35)
     var body: some View {
         ZStack{
             Rectangle()
                 .fill((atom.color != nil ? atom.color : .clear)!.secondary)
-                .cornerRadius(20)
+                .cornerRadius(2)
             ZStack{
                 VStack{
                     HStack{
                         Text("\(atom.id)")
-                            .font(.title2)
+                            .font(.system(size: 6))
                         Spacer()
-                        Text("\(String(format:"%.2f",atom.mass))")
-                            .font(.title2)
+                        Text("\(Int(atom.mass))")
+                            .font(.system(size: 6))
                     }
                     Spacer()
+                    Text("\(atom.name)")
+                        .font(.system(size: 5))
                 }
                 HStack{
-                    Text("\(atom.name)")
-                        .font(.title)
+                    Text("\(atom.short)")
+                        .font(.system(size: 10))
                         .bold()
                     
                 }
             }
-            .padding()
+            .padding(1)
             
         }
         .frame(width: size.width,height: size.height)

@@ -104,6 +104,7 @@ func generateElectrons(K: Int = 1, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 
 class Atom: Identifiable {
     var id: Int { number }
     var name: String = "Wodór"
+    var short: String = ""
     var number: Int = 1
     var mass: Float = 1.0
     var description: String = ""
@@ -118,8 +119,9 @@ class Atom: Identifiable {
     var P: Int = 0
     var particles: [Particle] = []
     
-    init(name: String = "test", number: Int = 0, mass: Float = 0, description: String = "", color: Color? = nil, Protons: Int = 1, Neutrons: Int = 0, K: Int = 0, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 0, P: Int = 0, particles: [Particle] = []) {
+    init(name: String = "test", short: String = "", number: Int = 0, mass: Float = 0, description: String = "", color: Color? = nil, Protons: Int = 1, Neutrons: Int = 0, K: Int = 0, L: Int = 0, M: Int = 0, N: Int = 0, O: Int = 0, P: Int = 0, particles: [Particle] = []) {
         self.name = name
+        self.short = short
         self.number = number
         self.mass = mass
         self.description = description
@@ -143,6 +145,7 @@ let Atoms: [Atom] = [
     // 1: Wodór
     Atom(
         name: "Wodór",
+        short: "H",
         number: 1,
         mass: 1.0,
         description: "Najprostszy atom, składa się z jednego protonu i jednego elektronu.",
@@ -153,6 +156,7 @@ let Atoms: [Atom] = [
     // 2: Hel
     Atom(
         name: "Hel",
+        short: "He",
         number: 2,
         mass: 4.0,
         description: "Atom helu, składający się z dwóch protonów, dwóch neutronów i dwóch elektronów.",
@@ -162,6 +166,7 @@ let Atoms: [Atom] = [
     // 3: Lit
     Atom(
         name: "Lit",
+        short: "Li",
         number: 3,
         mass: 6.94,
         description: "Pierwiastek chemiczny z grupy metali alkalicznych, ma 3 protony i 3 elektrony.",
@@ -171,6 +176,7 @@ let Atoms: [Atom] = [
     // 4: Beryl
     Atom(
         name: "Beryl",
+        short: "Be",
         number: 4,
         mass: 9.01,
         description: "Mały, twardy metal alkaliczno-ziemny, posiadający 4 elektrony.",
@@ -180,6 +186,7 @@ let Atoms: [Atom] = [
     // 5: Bor
     Atom(
         name: "Bor",
+        short: "B",
         number: 5,
         mass: 10.81,
         description: "Półmetaliczny pierwiastek z grupy borowców.",
@@ -189,6 +196,7 @@ let Atoms: [Atom] = [
     // 6: Węgiel
     Atom(
         name: "Węgiel",
+        short: "C",
         number: 6,
         mass: 12.0,
         description: "Podstawowy pierwiastek życia, posiada 6 elektronów.",
@@ -198,6 +206,7 @@ let Atoms: [Atom] = [
     // 7: Azot
     Atom(
         name: "Azot",
+        short: "N",
         number: 7,
         mass: 14.01,
         description: "Bardzo ważny pierwiastek w atmosferze, ma 7 protonów i 7 neutronów.",
@@ -207,6 +216,7 @@ let Atoms: [Atom] = [
     // 8: Tlen
     Atom(
         name: "Tlen",
+        short: "O",
         number: 8,
         mass: 16.0,
         description: "Pierwiastek, który jest niezbędny do życia, szczególnie w oddychaniu, z 8 elektronami.",
@@ -216,6 +226,7 @@ let Atoms: [Atom] = [
     // 9: Fluor
     Atom(
         name: "Fluor",
+        short: "F",
         number: 9,
         mass: 18.998,
         description: "Fluor to pierwiastek bardzo reaktywny, z 9 protonami i 9 elektronami.",
@@ -224,7 +235,8 @@ let Atoms: [Atom] = [
     
     // 10: Neón
     Atom(
-        name: "Neón",
+        name: "Neon",
+        short: "Ne",
         number: 10,
         mass: 20.18,
         description: "Neon jest jednym z gazów szlachetnych, posiada 10 protonów i 10 elektronów.",
@@ -234,6 +246,7 @@ let Atoms: [Atom] = [
     // 11: Sód
     Atom(
         name: "Sód",
+        short: "Na",
         number: 11,
         mass: 22.99,
         description: "Sód to metal alkaliczny, który ma 11 protonów, 11 elektronów i 12 neutronów.",
@@ -243,6 +256,7 @@ let Atoms: [Atom] = [
     // 12: Magnez
     Atom(
         name: "Magnez",
+        short: "Mg",
         number: 12,
         mass: 24.31,
         description: "Magnez to metal ziem alkalicznych, który ma 12 protonów i 12 elektronów.",
@@ -252,6 +266,7 @@ let Atoms: [Atom] = [
     // 13: Glin
     Atom(
         name: "Glin",
+        short: "Al",
         number: 13,
         mass: 26.98,
         description: "Glin jest metalem, który ma 13 protonów i 13 elektronów.",
@@ -261,6 +276,7 @@ let Atoms: [Atom] = [
     // 14: Krzem
     Atom(
         name: "Krzem",
+        short: "Si",
         number: 14,
         mass: 28.09,
         description: "Krzem jest półmetalem, ma 14 protonów i 14 elektronów.",
@@ -270,6 +286,7 @@ let Atoms: [Atom] = [
     // 15: Fosfor
     Atom(
         name: "Fosfor",
+        short: "P",
         number: 15,
         mass: 30.97,
         description: "Fosfor to pierwiastek w grupie azotowców, ma 15 protonów i 15 elektronów.",
@@ -279,6 +296,7 @@ let Atoms: [Atom] = [
     // 16: Siarka
     Atom(
         name: "Siarka",
+        short: "S",
         number: 16,
         mass: 32.07,
         description: "Siarka to pierwiastek chemiczny, który występuje w wielu związkach.",
@@ -288,6 +306,7 @@ let Atoms: [Atom] = [
     // 17: Chlor
     Atom(
         name: "Chlor",
+        short: "Cl",
         number: 17,
         mass: 35.45,
         description: "Chlor to gaz halogenowy, bardzo reaktywny, z 17 protonami i 17 elektronami.",
@@ -297,6 +316,7 @@ let Atoms: [Atom] = [
     // 18: Argon
     Atom(
         name: "Argon",
+        short: "Ar",
         number: 18,
         mass: 39.95,
         description: "Argon to gaz szlachetny, posiadający 18 protonów i 18 elektronów.",
@@ -306,6 +326,7 @@ let Atoms: [Atom] = [
     // 19: Potas
     Atom(
         name: "Potas",
+        short: "K",
         number: 19,
         mass: 39.10,
         description: "Potas jest metalem alkalicznym z 19 protonami i 19 elektronami.",
@@ -315,6 +336,7 @@ let Atoms: [Atom] = [
     // 20: Wapń
     Atom(
         name: "Wapń",
+        short: "Ca",
         number: 20,
         mass: 40.08,
         description: "Wapń to metal ziem alkalicznych, który odgrywa kluczową rolę w organizmach żywych.",
@@ -324,6 +346,7 @@ let Atoms: [Atom] = [
     // 21: Skand
     Atom(
         name: "Skand",
+        short: "Sc",
         number: 21,
         mass: 44.96,
         description: "Skand to metal przejściowy, ma 21 protonów i 21 elektronów.",
@@ -333,6 +356,7 @@ let Atoms: [Atom] = [
     // 22: Tytan
     Atom(
         name: "Tytan",
+        short: "Ti",
         number: 22,
         mass: 47.87,
         description: "Tytan to metal przejściowy, który jest szeroko stosowany w przemysłach lotniczym i kosmicznym.",
@@ -342,6 +366,7 @@ let Atoms: [Atom] = [
     // 23: Wanad
     Atom(
         name: "Wanad",
+        short: "V",
         number: 23,
         mass: 50.94,
         description: "Wanad to metal przejściowy, wykorzystywany w produkcji stali.",
@@ -351,6 +376,7 @@ let Atoms: [Atom] = [
     // 24: Chrom
     Atom(
         name: "Chrom",
+        short: "Cr",
         number: 24,
         mass: 52.00,
         description: "Chrom to metal przejściowy, znany ze swojej odporności na korozję.",
@@ -360,6 +386,7 @@ let Atoms: [Atom] = [
     // 25: Mangan
     Atom(
         name: "Mangan",
+        short: "Mn",
         number: 25,
         mass: 54.94,
         description: "Mangan to metal przejściowy, używany w produkcji stopów i baterii.",
@@ -369,6 +396,7 @@ let Atoms: [Atom] = [
     // 26: Żelazo
     Atom(
         name: "Żelazo",
+        short: "Fe",
         number: 26,
         mass: 55.85,
         description: "Żelazo to metal przejściowy, który jest głównym składnikiem stali.",
@@ -378,6 +406,7 @@ let Atoms: [Atom] = [
     // 27: Kobalt
     Atom(
         name: "Kobalt",
+        short: "Co",
         number: 27,
         mass: 58.93,
         description: "Kobalt to metal przejściowy, który znajduje zastosowanie w bateriach i materiałach magnetycznych.",
@@ -387,6 +416,7 @@ let Atoms: [Atom] = [
     // 28: Nikiel
     Atom(
         name: "Nikiel",
+        short: "Ni",
         number: 28,
         mass: 58.69,
         description: "Nikiel to metal, wykorzystywany w stopach oraz jako materiał magnetyczny.",
@@ -396,6 +426,7 @@ let Atoms: [Atom] = [
     // 29: Miedź
     Atom(
         name: "Miedź",
+        short: "Cu",
         number: 29,
         mass: 63.55,
         description: "Miedź to metal przejściowy, powszechnie używany w przemyśle elektrycznym i elektronicznym.",
@@ -405,6 +436,7 @@ let Atoms: [Atom] = [
     // 30: Cynk
     Atom(
         name: "Cynk",
+        short: "Zn",
         number: 30,
         mass: 65.38,
         description: "Cynk to metal, wykorzystywany głównie do produkcji stopów oraz jako powłoka ochronna.",
@@ -414,6 +446,7 @@ let Atoms: [Atom] = [
     // 31: Gal
     Atom(
         name: "Gal",
+        short: "Ga",
         number: 31,
         mass: 69.72,
         description: "Gal to metal rzadki, który jest używany w elektronice, np. w diodach LED.",
@@ -423,6 +456,7 @@ let Atoms: [Atom] = [
     // 32: German
     Atom(
         name: "German",
+        short: "Ge",
         number: 32,
         mass: 72.63,
         description: "German to półmetal, który znajduje zastosowanie w elektronice i wytwarzaniu półprzewodników.",
@@ -432,6 +466,7 @@ let Atoms: [Atom] = [
     // 33: Arsen
     Atom(
         name: "Arsen",
+        short: "As",
         number: 33,
         mass: 74.92,
         description: "Arsen to półmetal, który był używany w medycynie oraz w elektronice.",
@@ -441,6 +476,7 @@ let Atoms: [Atom] = [
     // 34: Selen
     Atom(
         name: "Selen",
+        short: "Se",
         number: 34,
         mass: 78.96,
         description: "Selen to półmetal, który jest ważnym pierwiastkiem w organizmach żywych.",
@@ -450,6 +486,7 @@ let Atoms: [Atom] = [
     // 35: Brom
     Atom(
         name: "Brom",
+        short: "Br",
         number: 35,
         mass: 79.90,
         description: "Brom to pierwiastek halogenowy, który ma szerokie zastosowanie w chemii przemysłowej.",
@@ -459,6 +496,7 @@ let Atoms: [Atom] = [
     // 36: Krypton
     Atom(
         name: "Krypton",
+        short: "Kr",
         number: 36,
         mass: 83.80,
         description: "Krypton to gaz szlachetny, który jest wykorzystywany w lampach i zastosowaniach optycznych.",
@@ -468,6 +506,7 @@ let Atoms: [Atom] = [
     // 37: Rubid
     Atom(
         name: "Rubid",
+        short: "Rb",
         number: 37,
         mass: 85.47,
         description: "Rubid to metal alkaliczny, używany głównie w badaniach naukowych i technologii.",
@@ -477,6 +516,7 @@ let Atoms: [Atom] = [
     // 38: Stront
     Atom(
         name: "Stront",
+        short: "Sr",
         number: 38,
         mass: 87.62,
         description: "Stront to metal ziem alkalicznych, stosowany w produkcji fajerwerków i materiałów luminescencyjnych.",
@@ -486,6 +526,7 @@ let Atoms: [Atom] = [
     // 39: Itr
     Atom(
         name: "Itr",
+        short: "Y",
         number: 39,
         mass: 88.91,
         description: "Itr to metal przejściowy, wykorzystywany w technologii zaawansowanych materiałów.",
@@ -495,6 +536,7 @@ let Atoms: [Atom] = [
     // 40: Cyrkon
     Atom(
         name: "Cyrkon",
+        short: "Zr",
         number: 40,
         mass: 91.22,
         description: "Cyrkon to metal, który jest szeroko wykorzystywany w produkcji reaktorów jądrowych.",
@@ -504,6 +546,7 @@ let Atoms: [Atom] = [
     // 41: Niob
     Atom(
         name: "Niob",
+        short: "Nb",
         number: 41,
         mass: 92.91,
         description: "Niob to metal przejściowy, stosowany w produkcji stali nierdzewnej i stopów wysokotemperaturowych.",
@@ -513,6 +556,7 @@ let Atoms: [Atom] = [
     // 42: Molibden
     Atom(
         name: "Molibden",
+        short: "Mo",
         number: 42,
         mass: 95.95,
         description: "Molibden to metal przejściowy, który znajduje zastosowanie w produkcji stopów odpornych na wysoką temperaturę.",
@@ -522,6 +566,7 @@ let Atoms: [Atom] = [
     // 43: Technet
     Atom(
         name: "Technet",
+        short: "Tc",
         number: 43,
         mass: 98.00,
         description: "Technet to radioaktywny pierwiastek chemiczny, który jest używany w medycynie.",
@@ -531,6 +576,7 @@ let Atoms: [Atom] = [
     // 44: Ruten
     Atom(
         name: "Ruten",
+        short: "Ru",
         number: 44,
         mass: 101.1,
         description: "Ruten to metal przejściowy, który wykorzystywany jest w katalizie i produkcji biżuterii.",
@@ -540,6 +586,7 @@ let Atoms: [Atom] = [
     // 45: Rod
     Atom(
         name: "Rod",
+        short: "Rh",
         number: 45,
         mass: 102.91,
         description: "Rod to metal przejściowy, szeroko stosowany w jubilerstwie.",
@@ -549,6 +596,7 @@ let Atoms: [Atom] = [
     // 46: Pallad
     Atom(
         name: "Pallad",
+        short: "Pd",
         number: 46,
         mass: 106.42,
         description: "Pallad to metal szlachetny, wykorzystywany w przemyśle motoryzacyjnym i elektronice.",
@@ -558,6 +606,7 @@ let Atoms: [Atom] = [
     // 47: Srebro
     Atom(
         name: "Srebro",
+        short: "Ag",
         number: 47,
         mass: 107.87,
         description: "Srebro to metal szlachetny, wykorzystywany głównie w jubilerstwie i produkcji monet.",
@@ -567,6 +616,7 @@ let Atoms: [Atom] = [
     // 48: Kadm
     Atom(
         name: "Kadm",
+        short: "Cd",
         number: 48,
         mass: 112.41,
         description: "Kadm to metal ciężki, który znajduje zastosowanie w akumulatorach i powłokach ochronnych.",
@@ -576,6 +626,7 @@ let Atoms: [Atom] = [
     // 49: Ind
     Atom(
         name: "Ind",
+        short: "In",
         number: 49,
         mass: 114.82,
         description: "Ind to metal rzadki, wykorzystywany w elektronice, zwłaszcza w produkcji ekranów dotykowych.",
@@ -585,6 +636,7 @@ let Atoms: [Atom] = [
     // 50: Cyna
     Atom(
         name: "Cyna",
+        short: "Sn",
         number: 50,
         mass: 118.71,
         description: "Cyna to metal, który jest wykorzystywany w produkcji lutów i stopów.",
@@ -594,6 +646,7 @@ let Atoms: [Atom] = [
     // 51: Antymon
     Atom(
         name: "Antymon",
+        short: "Sb",
         number: 51,
         mass: 121.76,
         description: "Antymon to półmetal, który jest wykorzystywany w produkcji półprzewodników.",
@@ -603,6 +656,7 @@ let Atoms: [Atom] = [
     // 52: Tellur
     Atom(
         name: "Tellur",
+        short: "Te",
         number: 52,
         mass: 127.60,
         description: "Tellur to półmetal, który znajduje zastosowanie w elektronice oraz w produkcji stopów.",
@@ -612,33 +666,37 @@ let Atoms: [Atom] = [
     // 53: Jod
     Atom(
         name: "Jod",
+        short: "I",
         number: 53,
         mass: 126.90,
         description: "Jod to pierwiastek halogenowy, który jest ważny w medycynie i farmacji.",
         Protons: 53, Neutrons: 74, K: 2, L: 8, M: 18, N: 23
     ),
 
-    // 54: Krypton
+    // 54: Ksenon
     Atom(
-        name: "Krypton",
+        name: "Ksenon",
+        short: "Xe",
         number: 54,
         mass: 131.29,
-        description: "Krypton to gaz szlachetny, który jest wykorzystywany w technologii oświetleniowej.",
+        description: "Ksenon to gaz szlachetny, który jest wykorzystywany w technologii oświetleniowej.",
         Protons: 54, Neutrons: 77, K: 2, L: 8, M: 18, N: 24
     ),
 
     // 55: Ces
     Atom(
-        name: "Ces",
+        name: "Cez",
+        short: "Cs",
         number: 55,
         mass: 132.91,
-        description: "Ces to metal alkaliczny, który jest wykorzystywany w lampach gazowych oraz w produkcji energii.",
+        description: "Cez to metal alkaliczny, który jest wykorzystywany w lampach gazowych oraz w produkcji energii.",
         Protons: 55, Neutrons: 78, K: 2, L: 8, M: 18, N: 23
     ),
 
     // 56: Bar
     Atom(
         name: "Bar",
+        short: "Ba",
         number: 56,
         mass: 137.33,
         description: "Bar to metal ziem alkalicznych, który jest używany w produkcji stopów i materiałów szklarskich.",
@@ -648,6 +706,7 @@ let Atoms: [Atom] = [
     // 57: Lantan
     Atom(
         name: "Lantan",
+        short: "La",
         number: 57,
         mass: 138.91,
         description: "Lantan to metal ziem rzadkich, który znajduje zastosowanie w produkcji stopów oraz w elektronice.",
@@ -656,25 +715,28 @@ let Atoms: [Atom] = [
 
     // 58: Ceryt
     Atom(
-        name: "Ceryt",
+        name: "Cer",
+        short: "Ce",
         number: 58,
         mass: 140.12,
-        description: "Ceryt to metal ziem rzadkich, stosowany głównie w technologii nuklearnej.",
+        description: "Cer to metal ziem rzadkich, stosowany głównie w technologii nuklearnej.",
         Protons: 58, Neutrons: 82, K: 2, L: 8, M: 18, N: 26
     ),
 
     // 59: Praseodym
     Atom(
-        name: "Praseodym",
+        name: "Prazeodym",
+        short: "Pr",
         number: 59,
         mass: 140.91,
-        description: "Praseodym to metal ziem rzadkich, wykorzystywany w produkcji stopów i magnesów.",
+        description: "Prazeodym to metal ziem rzadkich, wykorzystywany w produkcji stopów i magnesów.",
         Protons: 59, Neutrons: 82, K: 2, L: 8, M: 18, N: 27
     ),
 
     // 60: Neodym
     Atom(
         name: "Neodym",
+        short: "Nd",
         number: 60,
         mass: 144.24,
         description: "Neodym to metal ziem rzadkich, stosowany głównie w produkcji silnych magnesów.",
@@ -684,6 +746,7 @@ let Atoms: [Atom] = [
     // 61: Promet
     Atom(
         name: "Promet",
+        short: "Pm",
         number: 61,
         mass: 145.00,
         description: "Promet to radioaktywny pierwiastek, wykorzystywany w specjalnych źródłach światła.",
@@ -692,16 +755,18 @@ let Atoms: [Atom] = [
 
     // 62: Samary
     Atom(
-        name: "Samary",
+        name: "Samar",
+        short: "Sm",
         number: 62,
         mass: 150.36,
-        description: "Samary to metal ziem rzadkich, stosowany w reaktorach jądrowych i w produkcji baterii.",
+        description: "Samar to metal ziem rzadkich, stosowany w reaktorach jądrowych i w produkcji baterii.",
         Protons: 62, Neutrons: 88, K: 2, L: 8, M: 18, N: 30
     ),
 
     // 63: Europ
     Atom(
         name: "Europ",
+        short: "Eu",
         number: 63,
         mass: 151.98,
         description: "Europ to metal ziem rzadkich, wykorzystywany w produkcji lamp fluorescencyjnych.",
@@ -710,16 +775,18 @@ let Atoms: [Atom] = [
 
     // 64: Gadolinium
     Atom(
-        name: "Gadolinium",
+        name: "Gadolin",
+        short: "Gd",
         number: 64,
         mass: 157.25,
-        description: "Gadolinium to metal ziem rzadkich, wykorzystywany w obrazowaniu medycznym i w reaktorach jądrowych.",
+        description: "Gadolin to metal ziem rzadkich, wykorzystywany w obrazowaniu medycznym i w reaktorach jądrowych.",
         Protons: 64, Neutrons: 93, K: 2, L: 8, M: 18, N: 32
     ),
 
     // 65: Terb
     Atom(
         name: "Terb",
+        short: "Tb",
         number: 65,
         mass: 158.93,
         description: "Terb to metal ziem rzadkich, wykorzystywany w produkcji elektroniki i technologii oświetleniowej.",
@@ -729,6 +796,7 @@ let Atoms: [Atom] = [
     // 66: Dysproz
     Atom(
         name: "Dysproz",
+        short: "Dy",
         number: 66,
         mass: 162.50,
         description: "Dysproz to metal ziem rzadkich, używany w produkcji silnych magnesów i urządzeń elektrycznych.",
@@ -738,6 +806,7 @@ let Atoms: [Atom] = [
     // 67: Holm
     Atom(
         name: "Holm",
+        short: "Ho",
         number: 67,
         mass: 164.93,
         description: "Holm to metal ziem rzadkich, stosowany w produkcji magnesów oraz w elektronice.",
@@ -747,6 +816,7 @@ let Atoms: [Atom] = [
     // 68: Erb
     Atom(
         name: "Erb",
+        short: "Er",
         number: 68,
         mass: 167.26,
         description: "Erb to metal ziem rzadkich, używany w produkcji lasery i telekomunikacji.",
@@ -755,16 +825,18 @@ let Atoms: [Atom] = [
 
     // 69: Tuli
     Atom(
-        name: "Tuli",
+        name: "Tul",
+        short: "Tm",
         number: 69,
         mass: 168.93,
-        description: "Tuli to metal ziem rzadkich, stosowany w produkcji materiałów magnetycznych.",
+        description: "Tul to metal ziem rzadkich, stosowany w produkcji materiałów magnetycznych.",
         Protons: 69, Neutrons: 100, K: 2, L: 8, M: 18, N: 37
     ),
 
     // 70: Iterb
     Atom(
         name: "Iterb",
+        short: "Yb",
         number: 70,
         mass: 173.04,
         description: "Iterb to metal ziem rzadkich, wykorzystywany w telekomunikacji i materiałach optycznych.",
@@ -774,6 +846,7 @@ let Atoms: [Atom] = [
     // 71: Lutet
     Atom(
         name: "Lutet",
+        short: "Lu",
         number: 71,
         mass: 174.97,
         description: "Lutet to metal ziem rzadkich, stosowany w technologii próżniowej i w stopach wysokotemperaturowych.",
@@ -783,6 +856,7 @@ let Atoms: [Atom] = [
     // 72: Hafn
     Atom(
         name: "Hafn",
+        short: "Hf",
         number: 72,
         mass: 178.49,
         description: "Hafn to metal przejściowy, stosowany głównie w reaktorach jądrowych i stopach wysokotemperaturowych.",
@@ -792,6 +866,7 @@ let Atoms: [Atom] = [
     // 73: Tantal
     Atom(
         name: "Tantal",
+        short: "Ta",
         number: 73,
         mass: 180.95,
         description: "Tantal to metal przejściowy, wykorzystywany w produkcji elektroniki, szczególnie kondensatorów.",
@@ -801,6 +876,7 @@ let Atoms: [Atom] = [
     // 74: Wolfram
     Atom(
         name: "Wolfram",
+        short: "W",
         number: 74,
         mass: 183.84,
         description: "Wolfram to metal przejściowy, stosowany w produkcji żarników, elektrod i materiałów o wysokiej temperaturze topnienia.",
@@ -810,6 +886,7 @@ let Atoms: [Atom] = [
     // 75: Ren
     Atom(
         name: "Ren",
+        short: "Re",
         number: 75,
         mass: 186.21,
         description: "Ren to metal przejściowy, wykorzystywany w elektronice, materiałach magnetycznych i katalizie.",
@@ -819,6 +896,7 @@ let Atoms: [Atom] = [
     // 76: Osm
     Atom(
         name: "Osm",
+        short: "Os",
         number: 76,
         mass: 190.23,
         description: "Osm to metal przejściowy, stosowany w produkcji kontaktów elektrycznych i w stopach o wysokiej twardości.",
@@ -827,16 +905,18 @@ let Atoms: [Atom] = [
 
     // 77: Iridium
     Atom(
-        name: "Iridium",
+        name: "Iryd",
+        short: "Ir",
         number: 77,
         mass: 192.22,
-        description: "Iridium to metal przejściowy, stosowany w produkcji stopów odpornych na wysokie temperatury.",
+        description: "Iryd to metal przejściowy, stosowany w produkcji stopów odpornych na wysokie temperatury.",
         Protons: 77, Neutrons: 115, K: 2, L: 8, M: 18, N: 32, O: 3
     ),
 
     // 78: Platyna
     Atom(
         name: "Platyna",
+        short: "Pt",
         number: 78,
         mass: 195.08,
         description: "Platyna to metal szlachetny, wykorzystywany w przemyśle chemicznym i jubilerskim.",
@@ -846,6 +926,7 @@ let Atoms: [Atom] = [
     // 79: Złoto
     Atom(
         name: "Złoto",
+        short: "Au",
         number: 79,
         mass: 196.97,
         description: "Złoto to metal szlachetny, wykorzystywany głównie w jubilerstwie oraz elektronice.",
@@ -855,6 +936,7 @@ let Atoms: [Atom] = [
     // 80: Rtęć
     Atom(
         name: "Rtęć",
+        short: "Hg",
         number: 80,
         mass: 200.59,
         description: "Rtęć to metal cieczy w temperaturze pokojowej, stosowany w termometrach i w technologii oświetleniowej.",
@@ -864,6 +946,7 @@ let Atoms: [Atom] = [
     // 81: Tal
     Atom(
         name: "Tal",
+        short: "Tl",
         number: 81,
         mass: 204.38,
         description: "Tal to metal rzadki, wykorzystywany w produkcji półprzewodników oraz w radioaktywnych źródłach ciepła.",
@@ -873,6 +956,7 @@ let Atoms: [Atom] = [
     // 82: Ołów
     Atom(
         name: "Ołów",
+        short: "Pb",
         number: 82,
         mass: 207.2,
         description: "Ołów to metal ciężki, wykorzystywany w akumulatorach, osłonach przed promieniowaniem i w produkcji farb.",
@@ -882,6 +966,7 @@ let Atoms: [Atom] = [
     // 83: Bizmut
     Atom(
         name: "Bizmut",
+        short: "Bi",
         number: 83,
         mass: 208.98,
         description: "Bizmut to metal ciężki, stosowany w produkcji stopów o niskiej temperaturze topnienia.",
@@ -891,6 +976,7 @@ let Atoms: [Atom] = [
     // 84: Polon
     Atom(
         name: "Polon",
+        short: "Po",
         number: 84,
         mass: 209.98,
         description: "Polon to pierwiastek radioaktywny, wykorzystywany w źródłach ciepła oraz w badaniach jądrowych.",
@@ -900,6 +986,7 @@ let Atoms: [Atom] = [
     // 85: Astat
     Atom(
         name: "Astat",
+        short: "At",
         number: 85,
         mass: 210.00,
         description: "Astat to pierwiastek radioaktywny, stosowany w leczeniu nowotworów i w badaniach medycznych.",
@@ -909,6 +996,7 @@ let Atoms: [Atom] = [
     // 86: Radon
     Atom(
         name: "Radon",
+        short: "Rn",
         number: 86,
         mass: 222.00,
         description: "Radon to pierwiastek radioaktywny, gaz szlachetny, wykorzystywany w terapii nowotworowej.",
@@ -917,16 +1005,18 @@ let Atoms: [Atom] = [
 
     // 87: Franc
     Atom(
-        name: "Franc",
+        name: "Frans",
+        short: "Fr",
         number: 87,
         mass: 223.00,
-        description: "Franc to rzadki, radioaktywny metal alkaliowy, stosowany w badaniach jądrowych.",
+        description: "Frans to rzadki, radioaktywny metal alkaliowy, stosowany w badaniach jądrowych.",
         Protons: 87, Neutrons: 136, K: 2, L: 8, M: 18, N: 32, O: 14
     ),
     
     // 88: Rad
     Atom(
         name: "Rad",
+        short: "Ra",
         number: 88,
         mass: 226.00,
         description: "Rad to pierwiastek radioaktywny, wykorzystywany w terapii nowotworowej oraz w badaniach naukowych.",
@@ -936,6 +1026,7 @@ let Atoms: [Atom] = [
     // 89: Aktyn
     Atom(
         name: "Aktyn",
+        short: "Ac",
         number: 89,
         mass: 227.00,
         description: "Aktyn to pierwiastek radioaktywny, wykorzystywany w badaniach jądrowych i technologii energetycznych.",
@@ -945,6 +1036,7 @@ let Atoms: [Atom] = [
     // 90: Tor
     Atom(
         name: "Tor",
+        short: "Th",
         number: 90,
         mass: 232.04,
         description: "Tor to pierwiastek radioaktywny, stosowany w energetyce jądrowej i produkcji materiałów napromieniowanych.",
@@ -954,6 +1046,7 @@ let Atoms: [Atom] = [
     // 91: Protaktyn
     Atom(
         name: "Protaktyn",
+        short: "Pa",
         number: 91,
         mass: 231.04,
         description: "Protaktyn to pierwiastek radioaktywny, stosowany w technologii jądrowej.",
@@ -963,6 +1056,7 @@ let Atoms: [Atom] = [
     // 92: Uran
     Atom(
         name: "Uran",
+        short: "U",
         number: 92,
         mass: 238.03,
         description: "Uran to pierwiastek radioaktywny, szeroko stosowany w energetyce jądrowej, zwłaszcza w reaktorach jądrowych.",
@@ -972,6 +1066,7 @@ let Atoms: [Atom] = [
     // 93: Neptun
     Atom(
         name: "Neptun",
+        short: "Np",
         number: 93,
         mass: 237.00,
         description: "Neptun to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych oraz w produkcji materiałów radioaktywnych.",
@@ -981,6 +1076,7 @@ let Atoms: [Atom] = [
     // 94: Pluton
     Atom(
         name: "Pluton",
+        short: "Pu",
         number: 94,
         mass: 244.00,
         description: "Pluton to pierwiastek sztuczny, wykorzystywany w reaktorach jądrowych i produkcji broni jądrowych.",
@@ -990,24 +1086,27 @@ let Atoms: [Atom] = [
     // 95: Ameryk
     Atom(
         name: "Ameryk",
+        short: "Am",
         number: 95,
         mass: 243.00,
         description: "Ameryk to pierwiastek sztuczny, stosowany w medycynie nuklearnej i badaniach jądrowych.",
         Protons: 95, Neutrons: 148, K: 2, L: 8, M: 18, N: 32, O: 22
     ),
 
-    // 96: Kur
+    // 96: Kiur
     Atom(
-        name: "Kur",
+        name: "Kiur",
+        short: "Cm",
         number: 96,
         mass: 247.00,
-        description: "Kur to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych i jako materiał reaktorowy.",
+        description: "Kiur to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych i jako materiał reaktorowy.",
         Protons: 96, Neutrons: 151, K: 2, L: 8, M: 18, N: 32, O: 23
     ),
     
     // 97: Berkel
     Atom(
         name: "Berkel",
+        short: "Bk",
         number: 97,
         mass: 247.00,
         description: "Berkel to pierwiastek sztuczny, używany w badaniach jądrowych.",
@@ -1017,6 +1116,7 @@ let Atoms: [Atom] = [
     // 98: Kaliforn
     Atom(
         name: "Kaliforn",
+        short: "Cf",
         number: 98,
         mass: 251.00,
         description: "Kaliforn to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych.",
@@ -1025,16 +1125,18 @@ let Atoms: [Atom] = [
 
     // 99: Einsteinium
     Atom(
-        name: "Einsteinium",
+        name: "Einstein",
+        short: "Es",
         number: 99,
         mass: 252.00,
-        description: "Einsteinium to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych i produkcji elementów radioaktywnych.",
+        description: "Einstein to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych i produkcji elementów radioaktywnych.",
         Protons: 99, Neutrons: 153, K: 2, L: 8, M: 18, N: 32, O: 26
     ),
     
     // 100: Ferm
     Atom(
         name: "Ferm",
+        short: "Fm",
         number: 100,
         mass: 257.00,
         description: "Ferm to pierwiastek sztuczny, stosowany w badaniach jądrowych i syntezach jądrowych.",
@@ -1043,163 +1145,181 @@ let Atoms: [Atom] = [
     
     // 101: Mendelewium
     Atom(
-        name: "Mendelewium",
+        name: "Mendelew",
+        short: "Md",
         number: 101,
         mass: 258.00,
-        description: "Mendelewium to pierwiastek sztuczny, stosowany w badaniach jądrowych.",
+        description: "Mendelew to pierwiastek sztuczny, stosowany w badaniach jądrowych.",
         Protons: 101, Neutrons: 157, K: 2, L: 8, M: 18, N: 32, O: 28
     ),
     
     // 102: Nobelium
     Atom(
-        name: "Nobelium",
+        name: "Nobel",
+        short: "No",
         number: 102,
         mass: 259.00,
-        description: "Nobelium to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych.",
+        description: "Nobel to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych.",
         Protons: 102, Neutrons: 157, K: 2, L: 8, M: 18, N: 32, O: 29
     ),
 
     // 103: Lawrencium
     Atom(
-        name: "Lawrencium",
+        name: "Lorens",
+        short: "Lr",
         number: 103,
         mass: 262.00,
-        description: "Lawrencium to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych.",
+        description: "Lorens to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych.",
         Protons: 103, Neutrons: 159, K: 2, L: 8, M: 18, N: 32, O: 30
     ),
 
     // 104: Rutherfordium
     Atom(
-        name: "Rutherfordium",
+        name: "Rutherford",
+        short: "Rf",
         number: 104,
         mass: 267.00,
-        description: "Rutherfordium to pierwiastek sztuczny, stosowany w badaniach jądrowych.",
+        description: "Rutherford to pierwiastek sztuczny, stosowany w badaniach jądrowych.",
         Protons: 104, Neutrons: 163, K: 2, L: 8, M: 18, N: 32, O: 31
     ),
 
-    // 105: Dubnium
+    // 105: Dubn
     Atom(
-        name: "Dubnium",
+        name: "Dubn",
+        short: "Db",
         number: 105,
         mass: 270.00,
-        description: "Dubnium to pierwiastek sztuczny, odkryty w laboratorium, wykorzystywany w badaniach jądrowych.",
+        description: "Dubn to pierwiastek sztuczny, odkryty w laboratorium, wykorzystywany w badaniach jądrowych.",
         Protons: 105, Neutrons: 162, K: 2, L: 8, M: 18, N: 32, O: 32
     ),
     
     // 106: Seaborgium
     Atom(
-        name: "Seaborgium",
+        name: "Seaborg",
+        short: "Sg",
         number: 106,
         mass: 271.00,
-        description: "Seaborgium to pierwiastek sztuczny, nazwany na cześć Glenna Seaborga, wykorzystywany w badaniach jądrowych.",
+        description: "Seaborg to pierwiastek sztuczny, nazwany na cześć Glenna Seaborga, wykorzystywany w badaniach jądrowych.",
         Protons: 106, Neutrons: 165, K: 2, L: 8, M: 18, N: 32, O: 33
     ),
     
     // 107: Bohrium
     Atom(
-        name: "Bohrium",
+        name: "Bohr",
+        short: "Bh",
         number: 107,
         mass: 270.00,
-        description: "Bohrium to pierwiastek sztuczny, odkryty w 1980 roku, wykorzystywany w badaniach jądrowych.",
+        description: "Bohr to pierwiastek sztuczny, odkryty w 1980 roku, wykorzystywany w badaniach jądrowych.",
         Protons: 107, Neutrons: 161, K: 2, L: 8, M: 18, N: 32, O: 34
     ),
 
     // 108: Hassium
     Atom(
-        name: "Hassium",
+        name: "Has",
+        short: "Hs",
         number: 108,
         mass: 277.00,
-        description: "Hassium to pierwiastek sztuczny, wykorzystywany głównie w badaniach jądrowych.",
+        description: "Has to pierwiastek sztuczny, wykorzystywany głównie w badaniach jądrowych.",
         Protons: 108, Neutrons: 169, K: 2, L: 8, M: 18, N: 32, O: 35
     ),
 
     // 109: Meitnerium
     Atom(
-        name: "Meitnerium",
+        name: "Meitner",
+        short: "Mt",
         number: 109,
         mass: 278.00,
-        description: "Meitnerium to pierwiastek sztuczny, odkryty w latach 80-tych XX wieku, wykorzystywany w badaniach jądrowych.",
+        description: "Meitner to pierwiastek sztuczny, odkryty w latach 80-tych XX wieku, wykorzystywany w badaniach jądrowych.",
         Protons: 109, Neutrons: 169, K: 2, L: 8, M: 18, N: 32, O: 36
     ),
     
     // 110: Darmstadtium
     Atom(
-        name: "Darmstadtium",
+        name: "Darmsztad",
+        short: "Ds",
         number: 110,
         mass: 281.00,
-        description: "Darmstadtium to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych, odkryty w Niemczech.",
+        description: "Darmsztad to pierwiastek sztuczny, wykorzystywany w badaniach jądrowych, odkryty w Niemczech.",
         Protons: 110, Neutrons: 171, K: 2, L: 8, M: 18, N: 32, O: 37
     ),
 
     // 111: Roentgenium
     Atom(
-        name: "Roentgenium",
+        name: "Roentgen",
+        short: "Rg",
         number: 111,
         mass: 280.00,
-        description: "Roentgenium to pierwiastek sztuczny, nazwany na cześć Wilhelma Roentgena, odkryty w 1994 roku.",
+        description: "Roentgen to pierwiastek sztuczny, nazwany na cześć Wilhelma Roentgena, odkryty w 1994 roku.",
         Protons: 111, Neutrons: 169, K: 2, L: 8, M: 18, N: 32, O: 38
     ),
 
     // 112: Copernicium
     Atom(
-        name: "Copernicium",
+        name: "Kopernik",
+        short: "Cn",
         number: 112,
         mass: 285.00,
-        description: "Copernicium to pierwiastek sztuczny, odkryty w Niemczech, nazwany na cześć Mikołaja Kopernika.",
+        description: "Kopernik to pierwiastek sztuczny, odkryty w Niemczech, nazwany na cześć Mikołaja Kopernika.",
         Protons: 112, Neutrons: 173, K: 2, L: 8, M: 18, N: 32, O: 39
     ),
 
     // 113: Nihonium
     Atom(
-        name: "Nihonium",
+        name: "Nihon",
+        short: "Nh",
         number: 113,
         mass: 284.00,
-        description: "Nihonium to pierwiastek sztuczny, odkryty przez japońskich naukowców w 2004 roku.",
+        description: "Nihon to pierwiastek sztuczny, odkryty przez japońskich naukowców w 2004 roku.",
         Protons: 113, Neutrons: 171, K: 2, L: 8, M: 18, N: 32, O: 40
     ),
 
     // 114: Flerovium
     Atom(
-        name: "Flerovium",
+        name: "Flerow",
+        short: "Fl",
         number: 114,
         mass: 289.00,
-        description: "Flerovium to pierwiastek sztuczny, nazwany na cześć Flerova, rosyjskiego naukowca.",
+        description: "Flerow to pierwiastek sztuczny, nazwany na cześć Flerova, rosyjskiego naukowca.",
         Protons: 114, Neutrons: 175, K: 2, L: 8, M: 18, N: 32, O: 41
     ),
 
     // 115: Moscovium
     Atom(
-        name: "Moscovium",
+        name: "Moskow",
+        short: "Mc",
         number: 115,
         mass: 288.00,
-        description: "Moscovium to pierwiastek sztuczny, odkryty w Rosji, nazwany na cześć Moskwy.",
+        description: "Moskow to pierwiastek sztuczny, odkryty w Rosji, nazwany na cześć Moskwy.",
         Protons: 115, Neutrons: 173, K: 2, L: 8, M: 18, N: 32, O: 42
     ),
 
     // 116: Livermorium
     Atom(
-        name: "Livermorium",
+        name: "Liwermor",
+        short: "Lv",
         number: 116,
         mass: 293.00,
-        description: "Livermorium to pierwiastek sztuczny, nazwany na cześć Laboratorium Livermore w Stanach Zjednoczonych.",
+        description: "Liwermor to pierwiastek sztuczny, nazwany na cześć Laboratorium Livermore w Stanach Zjednoczonych.",
         Protons: 116, Neutrons: 177, K: 2, L: 8, M: 18, N: 32, O: 43
     ),
     
     // 117: Tenessine
     Atom(
-        name: "Tenessine",
+        name: "Tenes",
+        short: "Ts",
         number: 117,
         mass: 294.00,
-        description: "Tenessine to pierwiastek sztuczny, nazwany na cześć stanu Tennessee, gdzie przeprowadzono badania.",
+        description: "Tenes to pierwiastek sztuczny, nazwany na cześć stanu Tennessee, gdzie przeprowadzono badania.",
         Protons: 117, Neutrons: 177, K: 2, L: 8, M: 18, N: 32, O: 44
     ),
     
     // 118: Oganesson
     Atom(
-        name: "Oganesson",
+        name: "Oganeson",
+        short: "Og",
         number: 118,
         mass: 294.00,
-        description: "Oganesson to pierwiastek sztuczny, nazwany na cześć rosyjskiego fizyka Jory Oganessiana.",
+        description: "Oganeson to pierwiastek sztuczny, nazwany na cześć rosyjskiego fizyka Jory Oganessiana.",
         Protons: 118, Neutrons: 176, K: 2, L: 8, M: 18, N: 32, O: 45
     )
 ]
