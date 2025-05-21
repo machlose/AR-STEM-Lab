@@ -241,12 +241,12 @@ struct ParticleARViewContainer: UIViewRepresentable {
     }
 }
 
-struct Content_Previews: PreviewProvider {
-    static var previews: some View {
-        @StateObject var appState = AppState()
-        @State var bomba: Experiments? =  nil
-        ParticleView(reset: $bomba)
-            .environmentObject(appState)
-    }
-}
+//struct Content_Previews: PreviewProvider {
+//    static var previews: some View {
+//        @StateObject var appState = AppState()
+//        @State var bomba: Experiments? =  nil
+//        ParticleView(reset: $bomba)
+//            .environmentObject(appState)
+//    }
+//}
 
