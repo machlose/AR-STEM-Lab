@@ -39,6 +39,7 @@ struct PeriodicTable: View {
                                 }
                             }
                         }
+                        .background(.black.opacity(0.001))
                         .simultaneousGesture(MagnifyGesture())
                         .background(
                             GeometryReader { proxy in
