@@ -548,7 +548,7 @@ let Atoms: [Atom] = [
         number: 37,
         mass: 85.47,
         description: "Rubid to metal alkaliczny, używany głównie w badaniach naukowych i technologii.",
-        Protons: 37, Neutrons: 48, K: 2, L: 8, M: 18, N: 8, O:1,
+        Protons: 37, Neutrons: 48, K: 2, L: 8, M: 18, N: 8, O:1
     ),
 
     // 38: Stront

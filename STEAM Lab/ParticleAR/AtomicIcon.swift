@@ -14,7 +14,10 @@ struct AtomicIcon: View {
     var body: some View {
         ZStack{
             Rectangle()
-                .fill(color)
+                .fill(.experimentButton)
+                .cornerRadius(2)
+            Rectangle()
+                .fill(color.secondary)
                 .cornerRadius(2)
             ZStack{
                 VStack{

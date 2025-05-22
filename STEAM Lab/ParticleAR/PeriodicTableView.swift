@@ -8,24 +8,73 @@
 import SwiftUI
 
 struct PeriodicTable: View {
-    @State var AtomViews:[[AnyView]] = []
+    @Binding var notShownAtoms: [Int]
+    @State var AtomViews:[[(view:AnyView,atom:Atom?)]] = []
     @State private var update: Bool = false;
+    @State private var scale: Double = 1.0
+    @State private var currentZoom: Double = 0
+    @State private var size: CGSize = CGSize()
     @State var atomy = Atoms
     var body: some View {
-        VStack{
+        VStack(){
             if(update){
                 ScrollView([.horizontal,.vertical]){
-                    Grid{
-                        ForEach(0..<AtomViews.count){ index in
-                            GridRow{
-                                ForEach(0..<AtomViews[index].count){ atom in
-                                    AtomViews[index][atom]
+                        Grid(horizontalSpacing: 2, verticalSpacing: 2){
+                            ForEach(0..<AtomViews.count){ index in
+                                GridRow{
+                                    ForEach(0..<AtomViews[index].count){ atom in
+                                        ZStack{
+                                            AtomViews[index][atom].view
+                                            if(AtomViews[index][atom].atom != nil){
+                                                if(notShownAtoms.contains(AtomViews[index][atom].atom!.id)){
+                                                    Color.black
+                                                        .frame(width: 35, height: 35).opacity(0.6)
+                                                }
+                                            }
+                                        }
+                                        .onTapGesture{
+                                            print(AtomViews[index][atom].atom!.id)
+                                        }
+                                    }
                                 }
+                            }
+                        }
+                        .simultaneousGesture(MagnifyGesture())
+                        .background(
+                            GeometryReader { proxy in
+                                Color.clear
+                                    .onAppear {
+                                        size = proxy.size
+                                    }
+                            }
+                        )
+                        .frame(width: size.width*(scale+currentZoom)+250*(scale+currentZoom-1), height: size.height*(scale+currentZoom)+size.height*2)
+                        .scaleEffect(scale+currentZoom)
+                        .gesture(
+                            MagnifyGesture()
+                                .onChanged { value in
+                                    currentZoom = value.magnification - 1
+                                    if(currentZoom+scale > 4.0){
+                                        currentZoom = 4.0-scale
+                                    }
+                                    if(currentZoom+scale < 1.0){
+                                        currentZoom = 1.0-scale
+                                    }
+                                }
+                                .onEnded { value in
+                                    scale += currentZoom
+                                    currentZoom = 0
+                                }
+                        )
+                        .accessibilityZoomAction { action in
+                            if action.direction == .zoomIn {
+                                scale += 1
+                            } else {
+                                scale -= 1
                             }
                         }
                     }
                 }
-            }
         }
         .onAppear{
             atomy.remove(at: 0)
@@ -55,17 +104,16 @@ struct PeriodicTable: View {
                 if spacings[index] != nil{
                     let num:Int = spacings[index] ?? -1
                     for _ in 0..<num{
-                        self.AtomViews[i].append(AnyView(AtomicGridSpacer()))
+                        self.AtomViews[i].append((view:AnyView(AtomicGridSpacer()),atom:Optional<Atom>.none))
                     }
                 }
-                self.AtomViews[i].append(AnyView(AtomicIcon(atom: atomy[index])))
+                self.AtomViews[i].append((view:AnyView(AtomicIcon(atom: atomy[index])),atom:atomy[index]))
             }
-            
         }
     }
 }
 
 #Preview {
-    PeriodicTable()
+    AtomSelectView()
         .environmentObject(AppState())
 }

@@ -15,9 +15,10 @@ struct STEAM_LabApp: App {
         WindowGroup {
             Group{
                 if (appState.Experiment == nil){
-                    ContentView()
-                        .environmentObject(appState)
-                        .preferredColorScheme(appState.Theme)
+                    AtomSelectView()
+//                    ContentView()
+//                        .environmentObject(appState)
+//                        .preferredColorScheme(appState.Theme)
                 }
                 else{
                     if(appState.Experiment == .solar){
