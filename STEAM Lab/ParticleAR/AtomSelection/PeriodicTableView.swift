@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PeriodicTable: View {
+    @EnvironmentObject var appState: AppState
     @Binding var notShownAtoms: [Int]
     @State var AtomViews:[[(view:AnyView,atom:Atom?)]] = []
     @State private var update: Bool = false;
@@ -33,7 +34,7 @@ struct PeriodicTable: View {
                                             }
                                         }
                                         .onTapGesture{
-                                            print(AtomViews[index][atom].atom!.id)
+                                            appState.particle_pickedAtom = AtomViews[index][atom].atom!.id
                                         }
                                     }
                                 }

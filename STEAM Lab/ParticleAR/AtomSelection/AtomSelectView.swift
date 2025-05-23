@@ -24,14 +24,17 @@ struct AtomSelectView: View {
                     TextField("Wyszukaj atom", text:$string)
                 }
                 PeriodicTable(notShownAtoms: $notShownAtoms)
+                    .background(.clear)
                 Spacer()
             }
+            .background(.red)
         }
         .onChange(of: string){
             getAtomsByString()
         }
         .padding(.horizontal)
         .navigationTitle("Wybierz atom")
+        .background(.clear)
     }
     func getAtomsByString(){
         notShownAtoms = []
@@ -42,7 +45,6 @@ struct AtomSelectView: View {
                 notShownAtoms.append(atom.id)
             }
         }
-        print(notShownAtoms)
     }
 }
 

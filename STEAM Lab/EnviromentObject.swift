@@ -11,6 +11,7 @@ class AppState: ObservableObject {
     @Published var Experiment: Experiments?
     @Published var Theme: ColorScheme? = nil
     @Published var userProfile: UserProfile
+    @Published var particle_pickedAtom: Int? 
     init(){
         userProfile = UserDefaults.getObject(forKey: "profile") ?? UserProfile()
     }

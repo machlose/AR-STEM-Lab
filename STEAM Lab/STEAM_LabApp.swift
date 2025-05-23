@@ -15,10 +15,9 @@ struct STEAM_LabApp: App {
         WindowGroup {
             Group{
                 if (appState.Experiment == nil){
-                    AtomSelectView()
-//                    ContentView()
-//                        .environmentObject(appState)
-//                        .preferredColorScheme(appState.Theme)
+                    ContentView()
+                        .environmentObject(appState)
+                        .preferredColorScheme(appState.Theme)
                 }
                 else{
                     if(appState.Experiment == .solar){
@@ -27,6 +26,7 @@ struct STEAM_LabApp: App {
                     }
                     if(appState.Experiment == .particle){
                         ParticleView(reset: $appState.Experiment)
+                            .environmentObject(appState)
                     }
                     else{
                         Text("")

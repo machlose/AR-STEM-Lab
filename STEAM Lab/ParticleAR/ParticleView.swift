@@ -8,11 +8,13 @@ import SwiftUI
 
 struct ParticleView: View {
     // Wybrana planeta – gdy nie jest nil, wyświetlamy overlay z informacjami
+    @EnvironmentObject var appState: AppState
     @Binding var reset: Experiments?
 
     var body: some View {
         ZStack {
-            ParticleARViewContainer()
+            ParticleARViewContainer(currentAtom: $appState.particle_pickedAtom)
+                .environmentObject(appState)
                 .edgesIgnoringSafeArea(.all)
             VStack{
                 Button{
@@ -28,6 +30,10 @@ struct ParticleView: View {
                     .padding()
                 }
                 Spacer()
+            }
+            ContentDrawer(title:"Atomy",ContentHeight: 600){
+                AtomSelectView()
+                    .background(.clear)
             }
         }
     }

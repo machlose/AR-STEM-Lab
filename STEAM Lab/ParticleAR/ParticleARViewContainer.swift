@@ -11,13 +11,15 @@ import ARKit
 import Combine
 
 struct ParticleARViewContainer: UIViewRepresentable {
-    var currentAtom: Int = 118
+    @Binding var currentAtom: Int?
+    @EnvironmentObject var appState: AppState
     class AtomCoordinator: NSObject {
+        var curentAtom: Int?
         var cancellable: Cancellable?
-        var Particles: [Particle] //= Atoms[1].particles
+        var Particles: [Particle]? //= Atoms[1].particles
         var accumulatedTime: TimeInterval = 0
         var arView: ARView?
-        
+
         // Główna kotwica układu planetarnego
         var planetaryAnchor: AnchorEntity?
         // Flaga określająca, czy jesteśmy w trybie "zoom"
@@ -31,11 +33,29 @@ struct ParticleARViewContainer: UIViewRepresentable {
         //var selectedPlanetBinding: Binding<PlanetInformation?>
         var overlayToggle: Bool = true
 
-        init(currentAtom: Int) {
-            Particles = generateAtomicCenter(Protons: Atoms[currentAtom].protons, Neutrons: Atoms[currentAtom].neutrons) + generateElectrons(K: Atoms[currentAtom].K, L: Atoms[currentAtom].L, M: Atoms[currentAtom].M, N: Atoms[currentAtom].N, O: Atoms[currentAtom].O, P: Atoms[currentAtom].P)
+        init(currentAtom: Binding<Int?>) {
+            let value: Int? = currentAtom.wrappedValue ?? 2
+            curentAtom = value
+            if(curentAtom != nil){
+                Particles = generateAtomicCenter(Protons: Atoms[curentAtom!].protons, Neutrons: Atoms[curentAtom!].neutrons) + generateElectrons(K: Atoms[curentAtom!].K, L: Atoms[curentAtom!].L, M: Atoms[curentAtom!].M, N: Atoms[curentAtom!].N, O: Atoms[curentAtom!].O, P: Atoms[curentAtom!].P)
+            }
+        }
+        func changeAtom() {
+            for i in 0..<Particles!.count{
+                Particles?[0].entity?.removeFromParent()
+                Particles?.remove(at: 0)
+            }
+            if(curentAtom != nil){
+                Particles = generateAtomicCenter(Protons: Atoms[curentAtom!].protons, Neutrons: Atoms[curentAtom!].neutrons) + generateElectrons(K: Atoms[curentAtom!].K, L: Atoms[curentAtom!].L, M: Atoms[curentAtom!].M, N: Atoms[curentAtom!].N, O: Atoms[curentAtom!].O, P: Atoms[curentAtom!].P)
+            }
+            for planet in Particles! {
+                if let planetEntity = planet.entity {
+                    planetaryAnchor!.addChild(planetEntity)
+                }
+            }
             //Atoms[currentAtom].particles
         }
-        
+
 //        @objc func handleTap(recognizer: UITapGestureRecognizer) {
 //            guard let arView = self.arView,
 //                  let planetaryAnchor = self.planetaryAnchor else { return }
@@ -145,7 +165,6 @@ struct ParticleARViewContainer: UIViewRepresentable {
         cameraTransform.rotation = quatX * quatY * quatZ
         
         planetaryAnchor.move(to: cameraTransform, relativeTo: planetaryAnchor.parent, duration: duration, timingFunction: .easeInOut)
-        print(cameraTransform)
     }
     
     func moveCameraAlongPath(arView: ARView, path: [(position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval)], forever: Bool = false){
@@ -165,7 +184,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
     }
     
     func makeCoordinator() -> AtomCoordinator {
-        AtomCoordinator(currentAtom: currentAtom)
+        AtomCoordinator(currentAtom: $currentAtom)
 //        Coordinator()
     }
     
@@ -186,7 +205,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
         let anchorEntity = AnchorEntity(world: .zero)
         anchorEntity.name = "planetaryAnchor"
         context.coordinator.planetaryAnchor = anchorEntity
-        for planet in context.coordinator.Particles {
+        for planet in context.coordinator.Particles! {
             if let planetEntity = planet.entity {
                 anchorEntity.addChild(planetEntity)
             }
@@ -223,11 +242,11 @@ struct ParticleARViewContainer: UIViewRepresentable {
                 // W trybie zoom orbitalne pozycje pozostają zamrożone (używamy freezeTime),
                 // natomiast obrót planet aktualizujemy zgodnie z bieżącym czasem.
 //                print("tylko obrót")
-                for planet in context.coordinator.Particles {
+                for planet in context.coordinator.Particles! {
                     planet.updateOrbit(elapsed: context.coordinator.freezeTime)
                 }
             } else {
-                for planet in context.coordinator.Particles {
+                for planet in context.coordinator.Particles! {
                     planet.update(elapsed: elapsed,delta: Float(event.deltaTime))
                 }
             }
@@ -237,7 +256,13 @@ struct ParticleARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
+//        context.coordinator.changeAtom(atom: 3)
+        if(currentAtom != context.coordinator.curentAtom){
+        }
+        context.coordinator.curentAtom = currentAtom
+        context.coordinator.changeAtom()
         // Aktualizacje widoku, jeśli są potrzebne
+        
     }
 }
 
