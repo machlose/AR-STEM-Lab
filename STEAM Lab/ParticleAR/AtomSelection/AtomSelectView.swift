@@ -46,7 +46,7 @@ struct AtomSelectView: View {
         if string == "" {return}
         for atom in Atoms{
             if(atom.name.lowercased().starts(with:string.lowercased()) == false &&
-               atom.short.lowercased().starts(with:string.lowercased()) == false){
+               atom.symbol.lowercased().starts(with:string.lowercased()) == false){
                 notShownAtoms.append(atom.id)
             }
         }

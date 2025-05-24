@@ -37,7 +37,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
             let value: Int? = currentAtom.wrappedValue ?? 2
             curentAtom = value
             if(curentAtom != nil){
-                Particles = generateAtomicCenter(Protons: Atoms[curentAtom!].protons, Neutrons: Atoms[curentAtom!].neutrons) + generateElectrons(K: Atoms[curentAtom!].K, L: Atoms[curentAtom!].L, M: Atoms[curentAtom!].M, N: Atoms[curentAtom!].N, O: Atoms[curentAtom!].O, P: Atoms[curentAtom!].P)
+                Particles = generateAtomicCenter(Protons: Atoms[curentAtom!].protons, Neutrons: Atoms[curentAtom!].neutrons) + generateElectrons(shells: Atoms[curentAtom!].shells)
             }
         }
         func changeAtom() {
@@ -46,7 +46,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
                 Particles?.remove(at: 0)
             }
             if(curentAtom != nil){
-                Particles = generateAtomicCenter(Protons: Atoms[curentAtom!].protons, Neutrons: Atoms[curentAtom!].neutrons) + generateElectrons(K: Atoms[curentAtom!].K, L: Atoms[curentAtom!].L, M: Atoms[curentAtom!].M, N: Atoms[curentAtom!].N, O: Atoms[curentAtom!].O, P: Atoms[curentAtom!].P)
+                Particles = generateAtomicCenter(Protons: Atoms[curentAtom!].protons, Neutrons: Atoms[curentAtom!].neutrons) + generateElectrons(shells: Atoms[curentAtom!].shells)
             }
             for planet in Particles! {
                 if let planetEntity = planet.entity {

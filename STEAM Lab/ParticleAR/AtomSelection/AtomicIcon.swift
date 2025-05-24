@@ -25,7 +25,7 @@ struct AtomicIcon: View {
                         Text("\(atom.id)")
                             .font(.system(size: 6))
                         Spacer()
-                        Text("\(Int(atom.mass))")
+                        Text("\(Int(atom.atomicMass))")
                             .font(.system(size: 6))
                     }
                     Spacer()
@@ -33,7 +33,7 @@ struct AtomicIcon: View {
                         .font(.system(size: 5))
                 }
                 HStack{
-                    Text("\(atom.short)")
+                    Text("\(atom.symbol)")
                         .font(.system(size: 10))
                         .bold()
                     

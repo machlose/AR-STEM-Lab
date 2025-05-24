@@ -82,7 +82,6 @@ struct PeriodicTable: View {
         }
         .scrollIndicators(.hidden)
         .onAppear{
-            print(Atoms2)
             atomy.remove(at: 0)
             var atomSubranges: [[Atom]] = [[],[]]
         

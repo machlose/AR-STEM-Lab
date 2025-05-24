@@ -34,7 +34,6 @@ struct STEAM_LabApp: App {
                 }
             }
             .onAppear{
-                print(appState.Experiment)
                 appState.Theme = colorScheme
 //                appState.Experiment = .particle
                 appState.checkSavedColorScheme()
