@@ -256,6 +256,7 @@ struct ParticleARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
+//        context.coordinator.changeAtom(atom: 3)
         if(currentAtom != context.coordinator.curentAtom){
             context.coordinator.curentAtom = currentAtom
             context.coordinator.changeAtom()

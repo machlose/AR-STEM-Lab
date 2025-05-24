@@ -1,5 +1,4 @@
-{
-    "elements": [
+[
         {
             "name": "Wodór",
             "appearance": "bezbarwny gaz",
@@ -5221,5 +5220,4 @@
             "cpk-hex": null,
             "block": "p"
         }
-    ]
-}
+]
