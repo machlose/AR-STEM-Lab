@@ -31,7 +31,7 @@ struct ParticleView: View {
                 }
                 Spacer()
             }
-            ContentDrawer(title:"Atomy",ContentHeight: 600){
+            ContentDrawer(title:"Atomy",ContentHeight: 800){
                 AtomSelectView()
                     .background(.clear)
             }

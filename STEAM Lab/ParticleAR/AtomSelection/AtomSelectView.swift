@@ -12,29 +12,34 @@ struct AtomSelectView: View {
     @State var string: String = ""
     @State var notShownAtoms: [Int] = []
     var body: some View {
-        NavigationStack{
+        ZStack{
+            PeriodicTable(notShownAtoms: $notShownAtoms)
             VStack(){
-                HStack(){
-                    Text("ATOMY")
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                    Spacer()
-                }
-                ZStack{
+                VStack(){
+                    HStack(){
+                        Text("ATOMY")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                        Spacer()
+                    }
                     TextField("Wyszukaj atom", text:$string)
                 }
-                PeriodicTable(notShownAtoms: $notShownAtoms)
-                    .background(.clear)
+                .padding()
+                .background(.ultraThinMaterial)
+                .clipShape(
+                    .rect(
+                        topLeadingRadius: 0,
+                        bottomLeadingRadius: 20,
+                        bottomTrailingRadius: 20,
+                        topTrailingRadius: 0
+                    )
+                )
                 Spacer()
             }
-            .background(.red)
         }
         .onChange(of: string){
             getAtomsByString()
         }
-        .padding(.horizontal)
-        .navigationTitle("Wybierz atom")
-        .background(.clear)
     }
     func getAtomsByString(){
         notShownAtoms = []

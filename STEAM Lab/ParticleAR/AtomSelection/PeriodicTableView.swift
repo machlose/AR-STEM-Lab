@@ -10,6 +10,7 @@ import SwiftUI
 struct PeriodicTable: View {
     @EnvironmentObject var appState: AppState
     @Binding var notShownAtoms: [Int]
+    let maxZoom = 2.0
     @State var AtomViews:[[(view:AnyView,atom:Atom?)]] = []
     @State private var update: Bool = false;
     @State private var scale: Double = 1.0
@@ -40,8 +41,6 @@ struct PeriodicTable: View {
                                 }
                             }
                         }
-                        .background(.black.opacity(0.001))
-                        .simultaneousGesture(MagnifyGesture())
                         .background(
                             GeometryReader { proxy in
                                 Color.clear
@@ -50,14 +49,16 @@ struct PeriodicTable: View {
                                     }
                             }
                         )
-                        .frame(width: size.width*(scale+currentZoom)+250*(scale+currentZoom-1), height: size.height*(scale+currentZoom)+size.height*2)
+                        .frame(width: size.width*(scale+currentZoom)+500*(scale+currentZoom - 1), height: size.height*(scale+currentZoom)+500)
                         .scaleEffect(scale+currentZoom)
+                        .background(.black.opacity(0.001))
+                        .simultaneousGesture(MagnifyGesture())
                         .gesture(
                             MagnifyGesture()
                                 .onChanged { value in
                                     currentZoom = value.magnification - 1
-                                    if(currentZoom+scale > 4.0){
-                                        currentZoom = 4.0-scale
+                                    if(currentZoom+scale > maxZoom){
+                                        currentZoom = maxZoom-scale
                                     }
                                     if(currentZoom+scale < 1.0){
                                         currentZoom = 1.0-scale
@@ -76,8 +77,10 @@ struct PeriodicTable: View {
                             }
                         }
                     }
+//                    .frame(width: size.width*(scale+currentZoom), height: size.height*(scale+currentZoom))
                 }
         }
+        .scrollIndicators(.hidden)
         .onAppear{
             atomy.remove(at: 0)
             var atomSubranges: [[Atom]] = [[],[]]
