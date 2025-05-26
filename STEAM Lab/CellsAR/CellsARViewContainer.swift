@@ -185,7 +185,11 @@ struct CellsARViewContainer: UIViewRepresentable {
         let anchorEntity = AnchorEntity(world: .zero)
         context.coordinator.planetaryAnchor = anchorEntity
         
-        if let cellModel = try? Entity.loadModel(contentsOf: URL(string: "Animal_cell_2")!){
+        
+//        fileURLWithPath: "path/to/MyEntity.usdz"
+        
+        if let cellModel = try? Entity.loadModel(contentsOf: URL(fileURLWithPath: "Animal_cell_2.usdz")){
+            print(cellModel.children)
             anchorEntity.addChild(cellModel)//nie działa
         } else {
             print("failed to load model: Animal_cell_2")
