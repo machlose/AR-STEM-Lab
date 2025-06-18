@@ -44,6 +44,7 @@ struct MathARViewContainer: UIViewRepresentable {
         let sphereMesh = MeshResource.generateCone(height: 20, radius: 10)
         
         var material = PhysicallyBasedMaterial()
+//        material.baseColor = PhysicallyBasedMaterial.BaseColor.init(tint:.red)
 
         let cubeEntity = ModelEntity(mesh: sphereMesh, materials: [material])
         cubeEntity.generateCollisionShapes(recursive: true)
@@ -75,6 +76,7 @@ struct MathARViewContainer: UIViewRepresentable {
         
         arView.scene.addAnchor(worldAnchor)
         
+//        worldAnchor.addChild()
         
         
         // Dodajemy gest dotyku

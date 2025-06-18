@@ -72,6 +72,26 @@ struct Planet {
         return planetEntity
     }
     
+    /*private func createEntity() -> ModelEntity? {
+        // Ładujemy teksturę planety z zasobów projektu
+        guard let textureResource = try? TextureResource.load(named: textureName) else {
+            print("Nie udało się załadować tekstury \(textureName)")
+            return nil
+        }
+        
+        // Tworzymy materiał oparty na PhysicallyBasedMaterial
+        var material = PhysicallyBasedMaterial()
+        material.baseColor = .init(texture: .init(textureResource))
+        
+        // Generujemy siatkę kuli o zadanym promieniu
+        let sphereMesh = MeshResource.generateSphere(radius: radius)
+        let planetEntity = ModelEntity(mesh: sphereMesh, materials: [material])
+        
+        // Ustawiamy początkową pozycję – na orbicie, zaczynając od punktu po prawej stronie środka orbity
+        planetEntity.position = orbitCenter + SIMD3<Float>(orbitRadius, 0, 0)
+        
+        return planetEntity
+    }*/
     
     // Funkcja aktualizująca pozycję i obrót planety na podstawie upływającego czasu
     func updateOrbit(elapsed: Float) {
@@ -106,6 +126,97 @@ struct Planet {
         updateRotation(delta: delta)
     }
     
+    /*func update(elapsed: Float) {
+        guard let planetEntity = self.entity else { return }
+        
+        // Obliczamy kąt dla orbity
+        let angle = elapsed * orbitSpeed
+        // Nowa pozycja na orbicie w płaszczyźnie xz
+        let newX = orbitCenter.x + orbitRadius * cos(angle)
+        let newZ = orbitCenter.z + orbitRadius * sin(angle)
+        planetEntity.position = SIMD3<Float>(newX, orbitCenter.y, newZ)
+        
+        // Obrót planety wokół własnej osi (zakładamy obrót wokół osi Y)
+        let rotationAngle = elapsed * selfRotationSpeed
+        planetEntity.orientation = simd_quatf(angle: rotationAngle, axis: SIMD3<Float>(0, 1, 0))
+    }
+    
+    func updateRotation(elapsed: Float) {
+        guard let planetEntity = self.entity else { return }
+        
+        let rotationAngle = elapsed * selfRotationSpeed
+        planetEntity.orientation = simd_quatf(angle: rotationAngle, axis: SIMD3<Float>(0, 1, 0))
+    }*/
 }
 
 
+/*import RealityKit
+import Foundation
+
+struct Planet {
+    var name: String
+    var textureName: String
+    var radius: Float
+    var orbitRadius: Float
+    var orbitCenter: SIMD3<Float>
+    var orbitSpeed: Float         // prędkość obrotu orbity (w radianach na sekundę)
+    var selfRotationSpeed: Float  // prędkość obrotu wokół własnej osi (w radianach na sekundę)
+    
+    // Encja reprezentująca planetę w scenie AR
+    var entity: ModelEntity?
+    
+    init(name: String,
+         textureName: String,
+         radius: Float,
+         orbitRadius: Float,
+         orbitCenter: SIMD3<Float>,
+         orbitSpeed: Float,
+         selfRotationSpeed: Float) {
+        self.name = name
+        self.textureName = textureName
+        self.radius = radius
+        self.orbitRadius = orbitRadius
+        self.orbitCenter = orbitCenter
+        self.orbitSpeed = orbitSpeed
+        self.selfRotationSpeed = selfRotationSpeed
+        self.entity = createEntity()
+    }
+    
+    private func createEntity() -> ModelEntity? {
+        // Ładujemy teksturę planety z katalogu zasobów projektu
+        guard let textureResource = try? TextureResource.load(named: textureName) else {
+            print("Nie udało się załadować tekstury \(textureName)")
+            return nil
+        }
+        
+        // Tworzymy materiał oparty na PhysicallyBasedMaterial
+        var material = PhysicallyBasedMaterial()
+        material.baseColor = .init(texture: .init(textureResource))
+        
+        // Generujemy siatkę kuli o zadanym promieniu
+        let sphereMesh = MeshResource.generateSphere(radius: radius)
+        let planetEntity = ModelEntity(mesh: sphereMesh, materials: [material])
+        
+        // Ustawiamy początkową pozycję – na orbicie, zaczynamy od punktu (orbitCenter.x + orbitRadius, orbitCenter.y, orbitCenter.z)
+        planetEntity.position = orbitCenter + SIMD3<Float>(orbitRadius, 0, 0)
+        
+        return planetEntity
+    }
+    
+    // Funkcja aktualizująca pozycję i obrót planety na podstawie upływającego czasu
+    func update(elapsed: Float) {
+        guard let planetEntity = self.entity else { return }
+        
+        // Obliczamy kąt dla orbity
+        let angle = elapsed * orbitSpeed
+        // Nowa pozycja na orbicie w płaszczyźnie xz
+        let newX = orbitCenter.x + orbitRadius * cos(angle)
+        let newZ = orbitCenter.z + orbitRadius * sin(angle)
+        planetEntity.position = SIMD3<Float>(newX, orbitCenter.y, newZ)
+        
+        // Obrót planety wokół własnej osi (zakładamy obrót wokół osi Y)
+        let rotationAngle = elapsed * selfRotationSpeed
+        planetEntity.orientation = simd_quatf(angle: rotationAngle, axis: SIMD3<Float>(0, 1, 0))
+    }
+}
+*/
