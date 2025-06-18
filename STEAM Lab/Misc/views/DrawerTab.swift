@@ -13,8 +13,6 @@ struct DrawerTab: View {
         ZStack{
             Rectangle()
                 .fill(.black.opacity(0.001))
-//                .fill(.ultraThinMaterial)
-//                .blendMode(.destinationOut)
             HStack{
                 Spacer()
                 VStack{

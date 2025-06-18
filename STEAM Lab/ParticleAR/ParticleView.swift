@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct ParticleView: View {
-    // Wybrana planeta – gdy nie jest nil, wyświetlamy overlay z informacjami
     @EnvironmentObject var appState: AppState
     @Binding var reset: Experiments?
 

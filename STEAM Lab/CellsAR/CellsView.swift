@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct CellsView: View {
-    // Wybrana planeta – gdy nie jest nil, wyświetlamy overlay z informacjami
     @Binding var reset: Experiments?
 
     var body: some View {

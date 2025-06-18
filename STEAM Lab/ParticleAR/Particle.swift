@@ -19,7 +19,6 @@ struct Particle {
     var orbitTimeOffset: Float = 0
     public static var rotationSpeedModifier: Double = 1
     
-    // Encja reprezentująca planetę w scenie AR
     var entity: ModelEntity?
     
     init(name: String,
@@ -42,23 +41,15 @@ struct Particle {
     }
     
     private func createEntity() -> ModelEntity? {
-        // Ładujemy teksturę planety z zasobów projektu
         guard let textureResource = try? TextureResource.load(named: textureName) else {
             print("Nie udało się załadować tekstury \(textureName)")
             return nil
         }
         
-        // Generujemy siatkę kuli o zadanym promieniu
         let sphereMesh = MeshResource.generateSphere(radius: radius)
         
-        // Dla Słońca chcemy uzyskać efekt świecenia, dlatego ustawiamy dodatkową emisję.
         var material = PhysicallyBasedMaterial()
         material.baseColor = .init(texture: .init(textureResource))
-        if name == "Sun" {
-            // Ustawiamy emisję – jasny żółty efekt, który sprawi, że Słońce będzie wyglądać, jakby świeciło
-            material.emissiveColor = .init(color: .yellow, texture: .init(textureResource))
-            //.init(tint: .yellow, texture: nil)
-        }
         
         let planetEntity = ModelEntity(mesh: sphereMesh, materials: [material])
         planetEntity.name = name
@@ -66,7 +57,6 @@ struct Particle {
         return planetEntity
     }
     
-    // Funkcja aktualizująca pozycję i obrót planety na podstawie upływającego czasu
     func updateOrbit(elapsed: Float) {
         guard let planetEntity = self.entity else { return }
         let angle = (elapsed + self.orbitTimeOffset) * orbitSpeed
