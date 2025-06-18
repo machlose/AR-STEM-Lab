@@ -188,7 +188,7 @@ struct CellsARViewContainer: UIViewRepresentable {
         
 //        fileURLWithPath: "path/to/MyEntity.usdz"
         
-        if let cellModel = try? Entity.loadModel(contentsOf: URL(fileURLWithPath: "Animal_cell_2.usdz")){
+        if let cellModel = try? Entity.loadModel(named: "Animal_cell_2.usdz"){
             print(cellModel.children)
             anchorEntity.addChild(cellModel)//nie działa
         } else {
@@ -197,6 +197,7 @@ struct CellsARViewContainer: UIViewRepresentable {
         if let planetEntity = Electron.entity {
             anchorEntity.addChild(planetEntity)
         }
+        anchorEntity.name = "planetaryAnchor"
         arView.scene.addAnchor(anchorEntity)
 //        arView.scene.anchors.append(anchorEntity)
         
@@ -212,6 +213,8 @@ struct CellsARViewContainer: UIViewRepresentable {
         
         let cameraPath: [(position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval)] = [
             (position: SIMD3<Float>(0,0,1), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 0),
+            (position: SIMD3<Float>(0,0,5), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 5),
+            (position: SIMD3<Float>(0,5,10), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 5),
         ]
         moveCameraAlongPath(arView: arView, path: cameraPath)
         return arView
