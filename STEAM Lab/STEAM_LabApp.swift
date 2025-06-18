@@ -21,7 +21,8 @@ struct STEAM_LabApp: App {
                 }
                 else{
                     if(appState.Experiment == .solar){
-                        SolarView(reset: $appState.Experiment)
+                        CellsView(reset: $appState.Experiment)
+//                        SolarView(reset: $appState.Experiment)
                             .environmentObject(appState)
                     }
                     if(appState.Experiment == .particle){

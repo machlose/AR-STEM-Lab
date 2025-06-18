@@ -70,7 +70,7 @@ func generateElectrons(shells: [Int]) -> [Particle] {
         for i in shells {
             for j in 0..<i {
                 let radius = (0.25+Float(counter)*0.1)
-                electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: radius * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: 6 / speed * Float(j) / Float(i))
+                electrons.append(Particle(name: "Electron", textureName: "electron", radius: 0.02 * scale, orbitRadius: radius * scale, orbitCenter: SIMD3<Float>(0, 0, 0), orbitSpeed: 1 * speed, orbitTimeOffset: .pi*2 / speed * Float(j) / Float(i))
             )
             }
             counter+=1
@@ -219,3 +219,12 @@ enum PeriodCategories: String,Codable{
 }
 
 var Atoms = readDataFromFile(from: "PeriodicTableJSON") as [Atom]
+
+struct Contentss_Previews: PreviewProvider {
+    static var previews: some View {
+        @StateObject var appState = AppState()
+        @State var bomba: Experiments? =  nil
+        ParticleView(reset: $bomba)
+            .environmentObject(appState)
+    }
+}

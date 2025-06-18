@@ -154,8 +154,10 @@ struct CellsARViewContainer: UIViewRepresentable {
         
         let firstPoint = path[0]
         var remainingPath = Array(path.dropFirst())
-        remainingPath.append(firstPoint)
-        
+        if forever{
+            remainingPath.append(firstPoint)
+        }
+                
         moveCamera(arView: arView, position: firstPoint.position, rotation: firstPoint.rotation, duration: firstPoint.duration)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + firstPoint.duration){
@@ -213,10 +215,10 @@ struct CellsARViewContainer: UIViewRepresentable {
         
         let cameraPath: [(position: SIMD3<Float>, rotation: SIMD3<Float>, duration: TimeInterval)] = [
             (position: SIMD3<Float>(0,0,1), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 0),
-            (position: SIMD3<Float>(0,0,5), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 5),
-            (position: SIMD3<Float>(0,5,10), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 5),
+            //(position: SIMD3<Float>(0,0,5), rotation: SIMD3<Float>(0,0,0).Normalized(), duration: 5),
+            (position: SIMD3<Float>(0,0,5), rotation: SIMD3<Float>(-1,0,0).Normalized(), duration: 5)
         ]
-        moveCameraAlongPath(arView: arView, path: cameraPath)
+        moveCameraAlongPath(arView: arView, path: cameraPath, forever: false)
         return arView
     }
     
